@@ -1,0 +1,239 @@
+{
+  "artifacts": [
+    {
+      "destination": "SKILL.md",
+      "kind": "skill",
+      "path": "skills/harness-continuity/SKILL.md"
+    },
+    {
+      "destination": "SKILL.md",
+      "kind": "skill",
+      "path": "skills/harness-dev-delivery/SKILL.md"
+    },
+    {
+      "destination": "SKILL.md",
+      "kind": "skill",
+      "path": "skills/harness-mission-lead/SKILL.md"
+    },
+    {
+      "destination": "SKILL.md",
+      "kind": "skill",
+      "path": "skills/harness-qa-verdict/SKILL.md"
+    },
+    {
+      "destination": "SKILL.md",
+      "kind": "skill",
+      "path": "skills/harness-runtime-model/SKILL.md"
+    },
+    {
+      "destination": "SKILL.md",
+      "kind": "skill",
+      "path": "skills/launcher-analyze-proof/SKILL.md"
+    },
+    {
+      "destination": "SKILL.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/SKILL.md"
+    },
+    {
+      "destination": "fullscreen-screenshot-and-video-evidence-policy.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/fullscreen-screenshot-and-video-evidence-policy.md"
+    },
+    {
+      "destination": "library-mcp-semantic-action-pitfall.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/library-mcp-semantic-action-pitfall.md"
+    },
+    {
+      "destination": "library-semantic-click-scroll-pitfalls.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/library-semantic-click-scroll-pitfalls.md"
+    },
+    {
+      "destination": "mission-control-agent-chat-mcp-controls.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/mission-control-agent-chat-mcp-controls.md"
+    },
+    {
+      "destination": "mission-control-current-video-proof-and-env-pinning.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/mission-control-current-video-proof-and-env-pinning.md"
+    },
+    {
+      "destination": "mission-control-direct-tab-and-delivery.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/mission-control-direct-tab-and-delivery.md"
+    },
+    {
+      "destination": "mission-control-drawer-semantic-controls-and-agent-console.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/mission-control-drawer-semantic-controls-and-agent-console.md"
+    },
+    {
+      "destination": "mission-control-exact-panel-screenshot-fallback.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/mission-control-exact-panel-screenshot-fallback.md"
+    },
+    {
+      "destination": "mission-control-harness-attachment-contract-and-ui-proof.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/mission-control-harness-attachment-contract-and-ui-proof.md"
+    },
+    {
+      "destination": "mission-control-launcher-qa-smoke-env-parity.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/mission-control-launcher-qa-smoke-env-parity.md"
+    },
+    {
+      "destination": "mission-control-persona-console-live-smoke.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/mission-control-persona-console-live-smoke.md"
+    },
+    {
+      "destination": "mission-control-right-inspector-terminal-proof.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/mission-control-right-inspector-terminal-proof.md"
+    },
+    {
+      "destination": "mission-control-run-inspector-playback-proof.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/mission-control-run-inspector-playback-proof.md"
+    },
+    {
+      "destination": "mission-control-screenshot-qa-lane.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/mission-control-screenshot-qa-lane.md"
+    },
+    {
+      "destination": "mission-control-semantic-shell-scroll-terminal-proof.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/mission-control-semantic-shell-scroll-terminal-proof.md"
+    },
+    {
+      "destination": "mission-control-smoke-pinning-and-empty-goals.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/mission-control-smoke-pinning-and-empty-goals.md"
+    },
+    {
+      "destination": "mission-control-spatial-semantic-controls.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/mission-control-spatial-semantic-controls.md"
+    },
+    {
+      "destination": "mission-control-terminal-screenshot-white-render.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/mission-control-terminal-screenshot-white-render.md"
+    },
+    {
+      "destination": "mission-control-video-proof-and-snapshot-parity.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/mission-control-video-proof-and-snapshot-parity.md"
+    },
+    {
+      "destination": "mission-control-video-recording-and-live-goal-smoke.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/mission-control-video-recording-and-live-goal-smoke.md"
+    },
+    {
+      "destination": "mission-control-window-title-video-capture.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/mission-control-window-title-video-capture.md"
+    },
+    {
+      "destination": "posts-algorithm-controls-visual-proof.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/posts-algorithm-controls-visual-proof.md"
+    },
+    {
+      "destination": "snipping-tool-bmp-conversion.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/snipping-tool-bmp-conversion.md"
+    },
+    {
+      "destination": "stagec-blank-visual-after-semantic-nav.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/stagec-blank-visual-after-semantic-nav.md"
+    },
+    {
+      "destination": "stagec-library-select-vs-open-contract.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/stagec-library-select-vs-open-contract.md"
+    },
+    {
+      "destination": "stagec-library-semantic-controls.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/stagec-library-semantic-controls.md"
+    },
+    {
+      "destination": "stagec-library-visual-semantic-parity.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/stagec-library-visual-semantic-parity.md"
+    },
+    {
+      "destination": "stagec-marionette-internal-screenshot-fallback.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/stagec-marionette-internal-screenshot-fallback.md"
+    },
+    {
+      "destination": "stagec-mcp-helper-boundary-current-window-screenshot.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/stagec-mcp-helper-boundary-current-window-screenshot.md"
+    },
+    {
+      "destination": "stagec-mcp-kanban-efficiency.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/stagec-mcp-kanban-efficiency.md"
+    },
+    {
+      "destination": "stagec-mcp-library-item-selection-gap.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/stagec-mcp-library-item-selection-gap.md"
+    },
+    {
+      "destination": "stagec-mcp-scroll-click-sequencing.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/stagec-mcp-scroll-click-sequencing.md"
+    },
+    {
+      "destination": "stagec-rancher-kubeconfig-tls-reset.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/stagec-rancher-kubeconfig-tls-reset.md"
+    },
+    {
+      "destination": "stagec-semantic-control-naming-and-page-local-tabs.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/stagec-semantic-control-naming-and-page-local-tabs.md"
+    },
+    {
+      "destination": "stagec-shell-scroll-and-mission-control-archive-proof.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/stagec-shell-scroll-and-mission-control-archive-proof.md"
+    },
+    {
+      "destination": "stagec-smoke-credential-source-vs-runner-access.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/stagec-smoke-credential-source-vs-runner-access.md"
+    },
+    {
+      "destination": "stagec-smoke-kubeconfig-credential-preflight.md",
+      "kind": "skill",
+      "path": "skills/launcher-stagec-mcp-screenshot/references/stagec-smoke-kubeconfig-credential-preflight.md"
+    },
+    {
+      "destination": "realms/cf6d244d-7cfa-4fa5-bab9-1401c8493b23.json",
+      "kind": "realm",
+      "path": "store/realms/cf6d244d-7cfa-4fa5-bab9-1401c8493b23.json"
+    },
+    {
+      "destination": "workspaces/ws_test_2a305b.json",
+      "kind": "workspace",
+      "path": "store/workspaces/ws_test_2a305b.json"
+    }
+  ],
+  "generated_at": "2026-07-17T03:32:08.114905-04:00",
+  "kind": "realm_sync_manifest",
+  "realm_id": "cf6d244d-7cfa-4fa5-bab9-1401c8493b23",
+  "schema_version": 1,
+  "server_id": "2ca6078f-8af9-4ed3-93b2-f5e1a7358020"
+}
