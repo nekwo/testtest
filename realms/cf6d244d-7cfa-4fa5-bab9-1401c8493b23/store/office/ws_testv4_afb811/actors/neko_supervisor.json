@@ -1,0 +1,28 @@
+{
+  "actor_key": "neko_supervisor",
+  "backing_profile": null,
+  "created_at": "2026-07-18T05:23:33.820247Z",
+  "items": [
+    {
+      "display_name": "Neko Mission Lead",
+      "folder": "Agents",
+      "item_id": "personainst_neko_supervisor",
+      "kind": "agent",
+      "persona_id": "neko_supervisor",
+      "pet_slug": null,
+      "position": [
+        0.4508592188358307,
+        -3.4163386821746826
+      ],
+      "scale": 1.0
+    }
+  ],
+  "persona_id": "neko_supervisor",
+  "persona_instance_id": null,
+  "revision": 8,
+  "schema_version": 1,
+  "state": "active",
+  "updated_at": "2026-07-18T07:42:52.547161Z",
+  "updated_by": "operator",
+  "workspace_id": "ws_testv4_afb811"
+}

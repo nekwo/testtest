@@ -1,34 +1,49 @@
 {
   "artifacts": [
     {
-      "destination": "SKILL.md",
-      "kind": "skill",
-      "path": "skills/harness-continuity/SKILL.md"
+      "destination": "config.yaml",
+      "kind": "persona_config",
+      "path": "profiles/backend-dev/config.yaml"
     },
     {
-      "destination": "SKILL.md",
-      "kind": "skill",
-      "path": "skills/harness-dev-delivery/SKILL.md"
+      "destination": "MEMORY.md",
+      "kind": "profile_memory",
+      "path": "profiles/backend-dev/personas/backend_dev/memories/MEMORY.md"
     },
     {
-      "destination": "SKILL.md",
-      "kind": "skill",
-      "path": "skills/harness-mission-lead/SKILL.md"
+      "destination": "config.yaml",
+      "kind": "persona_config",
+      "path": "profiles/gpt-launcher/config.yaml"
     },
     {
-      "destination": "SKILL.md",
-      "kind": "skill",
-      "path": "skills/harness-qa-verdict/SKILL.md"
+      "destination": "MEMORY.md",
+      "kind": "profile_memory",
+      "path": "profiles/gpt-launcher/personas/dev/memories/MEMORY.md"
     },
     {
-      "destination": "SKILL.md",
-      "kind": "skill",
-      "path": "skills/harness-runtime-model/SKILL.md"
+      "destination": "config.yaml",
+      "kind": "persona_config",
+      "path": "profiles/launcher-qa/config.yaml"
     },
     {
-      "destination": "SKILL.md",
-      "kind": "skill",
-      "path": "skills/launcher-analyze-proof/SKILL.md"
+      "destination": "MEMORY.md",
+      "kind": "profile_memory",
+      "path": "profiles/launcher-qa/personas/qa/memories/MEMORY.md"
+    },
+    {
+      "destination": "config.yaml",
+      "kind": "persona_config",
+      "path": "profiles/neko/config.yaml"
+    },
+    {
+      "destination": "MEMORY.md",
+      "kind": "profile_memory",
+      "path": "profiles/neko/personas/neko_supervisor/memories/MEMORY.md"
+    },
+    {
+      "destination": "SOUL.md",
+      "kind": "soul_overlay",
+      "path": "profiles/neko/personas/neko_supervisor/soul_overlay/SOUL.md"
     },
     {
       "destination": "SKILL.md",
@@ -221,17 +236,42 @@
       "path": "skills/launcher-stagec-mcp-screenshot/references/stagec-smoke-kubeconfig-credential-preflight.md"
     },
     {
+      "destination": "office/ws_testv4_afb811/actors/backend_dev.json",
+      "kind": "office_actor",
+      "path": "store/office/ws_testv4_afb811/actors/backend_dev.json"
+    },
+    {
+      "destination": "office/ws_testv4_afb811/actors/dev.json",
+      "kind": "office_actor",
+      "path": "store/office/ws_testv4_afb811/actors/dev.json"
+    },
+    {
+      "destination": "office/ws_testv4_afb811/actors/neko_supervisor.json",
+      "kind": "office_actor",
+      "path": "store/office/ws_testv4_afb811/actors/neko_supervisor.json"
+    },
+    {
+      "destination": "office/ws_testv4_afb811/actors/qa.json",
+      "kind": "office_actor",
+      "path": "store/office/ws_testv4_afb811/actors/qa.json"
+    },
+    {
+      "destination": "office/ws_testv4_afb811/office.json",
+      "kind": "office",
+      "path": "store/office/ws_testv4_afb811/office.json"
+    },
+    {
       "destination": "realms/cf6d244d-7cfa-4fa5-bab9-1401c8493b23.json",
       "kind": "realm",
       "path": "store/realms/cf6d244d-7cfa-4fa5-bab9-1401c8493b23.json"
     },
     {
-      "destination": "workspaces/ws_test_2a305b.json",
+      "destination": "workspaces/ws_testv4_afb811.json",
       "kind": "workspace",
-      "path": "store/workspaces/ws_test_2a305b.json"
+      "path": "store/workspaces/ws_testv4_afb811.json"
     }
   ],
-  "generated_at": "2026-07-17T03:32:08.114905-04:00",
+  "generated_at": "2026-07-18T03:45:18.531533-04:00",
   "kind": "realm_sync_manifest",
   "realm_id": "cf6d244d-7cfa-4fa5-bab9-1401c8493b23",
   "schema_version": 1,
