@@ -1,14 +1,14 @@
 {
   "agent_ids": [],
   "archived": false,
-  "created_at": "2026-07-09T03:38:58.282928Z",
+  "created_at": "2026-07-18T05:04:57.493060Z",
   "default_blueprint_id": null,
-  "id": "ws_test_2a305b",
+  "id": "ws_testv4_afb811",
   "isolation": "soft",
   "max_concurrent_lanes": null,
-  "name": "test",
+  "name": "testv4",
   "realm_id": "cf6d244d-7cfa-4fa5-bab9-1401c8493b23",
   "schema_version": 1,
-  "slug": "test",
-  "updated_at": "2026-07-09T03:38:58.282928Z"
+  "slug": "testv4",
+  "updated_at": "2026-07-18T05:04:57.493060Z"
 }

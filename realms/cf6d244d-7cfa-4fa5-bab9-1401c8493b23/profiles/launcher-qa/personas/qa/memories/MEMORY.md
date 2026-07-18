@@ -1,0 +1,5 @@
+Arcadia/Eternia Obsidian brain network convention: committed/shared brain links should use relative paths assuming each contributor keeps the projects in the same relative layout, even if the root drive/path/OS/user differs; personal parent-brain paths belong in gitignored local files such as `Parent Brain.local.md` with a committed `.example.md` template.
+§
+User's active Windows WezTerm config is `C:\Users\beast\.wezterm.lua` (`/mnt/c/Users/beast/.wezterm.lua` from WSL); it currently uses PowerShell/Ubuntu startup tabs, transparency, right-side scrollbar, and Alt+Shift+Left/Right tab reordering.
+§
+Hermes WebUI source is installed at `X:\Tools\hermes-webui` (`/mnt/x/Tools/hermes-webui` in WSL); it was installed per README using `python3 bootstrap.py --no-browser` and serves on `http://127.0.0.1:8787` by default.

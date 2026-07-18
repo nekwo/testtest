@@ -4,14 +4,23 @@
   "default_workspace_id": null,
   "default_workspace_name": "Default",
   "default_workspace_version": 0,
+  "deleted_workspace_ids": [
+    "ws_test_2a305b",
+    "ws_test-v3_2dd550",
+    "ws_testv2_053ff9"
+  ],
   "id": "cf6d244d-7cfa-4fa5-bab9-1401c8493b23",
   "name": "test realm",
   "schema_version": 1,
   "server_id": "2ca6078f-8af9-4ed3-93b2-f5e1a7358020",
+  "skill_publish_mode": "selected",
+  "skill_selection": [
+    "launcher-stagec-mcp-screenshot"
+  ],
   "slug": "test-realm",
   "sync_manifest_ref": "https://github.com/nekwo/testtest.git",
-  "updated_at": "2026-07-17T06:58:26.688456Z",
+  "updated_at": "2026-07-18T07:45:12.846846Z",
   "workspace_ids": [
-    "ws_test_2a305b"
+    "ws_testv4_afb811"
   ]
 }
