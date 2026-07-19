@@ -11,31 +11,18 @@
       "persona_id": "neko_supervisor",
       "pet_slug": null,
       "position": [
-        4.047661304473877,
-        -8.904677391052246
-      ],
-      "scale": 1.0
-    },
-    {
-      "display_name": "Neko Mission Lead (2)",
-      "folder": "Agents",
-      "item_id": "personainst_neko_supervisor_agent_2",
-      "kind": "agent",
-      "persona_id": "neko_supervisor",
-      "pet_slug": null,
-      "position": [
-        9.657792091369629,
-        -9.382169723510742
+        4.082339286804199,
+        -8.463136672973633
       ],
       "scale": 1.0
     }
   ],
   "persona_id": "neko_supervisor",
   "persona_instance_id": null,
-  "revision": 13,
+  "revision": 16,
   "schema_version": 1,
   "state": "active",
-  "updated_at": "2026-07-19T07:58:50.107521Z",
+  "updated_at": "2026-07-19T08:34:41.802304Z",
   "updated_by": "operator",
   "workspace_id": "ws_testv4_afb811"
 }
