@@ -1,0 +1,5 @@
+# Realm sync canonical line endings (managed by agent_runtime/realm_sync.py).
+# Published artifacts are written LF by the publisher; pin eol=lf so member
+# clones never re-flip endings on checkout regardless of local core.autocrlf.
+# text=auto leaves binary assets untouched.
+* text=auto eol=lf

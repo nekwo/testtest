@@ -1,15 +1,16 @@
 {
   "archived_actor_keys": [
-    "profile:alice"
+    "profile:alice",
+    "dev"
   ],
   "created_at": "2026-07-18T05:22:26.688315Z",
   "folders": [
     "Agents",
     "Desks"
   ],
-  "revision": 14,
+  "revision": 21,
   "schema_version": 1,
-  "updated_at": "2026-07-19T05:43:57.424312Z",
+  "updated_at": "2026-07-19T07:57:04.259620Z",
   "updated_by": "operator",
   "workspace_id": "ws_testv4_afb811"
 }
