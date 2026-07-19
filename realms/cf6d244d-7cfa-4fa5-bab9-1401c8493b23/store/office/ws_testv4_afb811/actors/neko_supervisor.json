@@ -19,10 +19,10 @@
   ],
   "persona_id": "neko_supervisor",
   "persona_instance_id": null,
-  "revision": 16,
+  "revision": 18,
   "schema_version": 1,
   "state": "active",
-  "updated_at": "2026-07-19T08:34:41.802304Z",
+  "updated_at": "2026-07-19T11:23:36.942006Z",
   "updated_by": "operator",
   "workspace_id": "ws_testv4_afb811"
 }
