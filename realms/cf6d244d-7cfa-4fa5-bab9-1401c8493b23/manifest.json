@@ -13,16 +13,6 @@
     {
       "destination": "config.yaml",
       "kind": "persona_config",
-      "path": "profiles/gpt-launcher/config.yaml"
-    },
-    {
-      "destination": "MEMORY.md",
-      "kind": "profile_memory",
-      "path": "profiles/gpt-launcher/personas/dev/memories/MEMORY.md"
-    },
-    {
-      "destination": "config.yaml",
-      "kind": "persona_config",
       "path": "profiles/launcher-qa/config.yaml"
     },
     {
@@ -241,11 +231,6 @@
       "path": "store/office/ws_testv4_afb811/actors/backend_dev.json"
     },
     {
-      "destination": "office/ws_testv4_afb811/actors/dev.json",
-      "kind": "office_actor",
-      "path": "store/office/ws_testv4_afb811/actors/dev.json"
-    },
-    {
       "destination": "office/ws_testv4_afb811/actors/neko_supervisor.json",
       "kind": "office_actor",
       "path": "store/office/ws_testv4_afb811/actors/neko_supervisor.json"
@@ -271,7 +256,7 @@
       "path": "store/workspaces/ws_testv4_afb811.json"
     }
   ],
-  "generated_at": "2026-07-19T01:47:34.845558-04:00",
+  "generated_at": "2026-07-19T03:58:57.276025-04:00",
   "kind": "realm_sync_manifest",
   "realm_id": "cf6d244d-7cfa-4fa5-bab9-1401c8493b23",
   "schema_version": 1,

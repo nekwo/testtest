@@ -24,18 +24,18 @@
       "persona_id": "neko_supervisor",
       "pet_slug": null,
       "position": [
-        9.003517150878906,
-        -8.837615013122559
+        9.657792091369629,
+        -9.382169723510742
       ],
       "scale": 1.0
     }
   ],
   "persona_id": "neko_supervisor",
   "persona_instance_id": null,
-  "revision": 12,
+  "revision": 13,
   "schema_version": 1,
   "state": "active",
-  "updated_at": "2026-07-19T05:47:23.369990Z",
+  "updated_at": "2026-07-19T07:58:50.107521Z",
   "updated_by": "operator",
   "workspace_id": "ws_testv4_afb811"
 }

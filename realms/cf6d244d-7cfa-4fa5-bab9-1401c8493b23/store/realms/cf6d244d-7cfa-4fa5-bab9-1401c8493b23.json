@@ -7,7 +7,8 @@
   "deleted_workspace_ids": [
     "ws_test_2a305b",
     "ws_test-v3_2dd550",
-    "ws_testv2_053ff9"
+    "ws_testv2_053ff9",
+    "ws_probe-diag_be4c75"
   ],
   "id": "cf6d244d-7cfa-4fa5-bab9-1401c8493b23",
   "name": "test realm",
@@ -19,7 +20,7 @@
   ],
   "slug": "test-realm",
   "sync_manifest_ref": "https://github.com/nekwo/testtest.git",
-  "updated_at": "2026-07-18T07:45:12.846846Z",
+  "updated_at": "2026-07-19T06:02:56.383782Z",
   "workspace_ids": [
     "ws_testv4_afb811"
   ]
