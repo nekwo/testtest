@@ -7,9 +7,9 @@
     "Agents",
     "Desks"
   ],
-  "revision": 11,
+  "revision": 14,
   "schema_version": 1,
-  "updated_at": "2026-07-18T07:42:53.165367Z",
+  "updated_at": "2026-07-19T05:43:57.424312Z",
   "updated_by": "operator",
   "workspace_id": "ws_testv4_afb811"
 }
