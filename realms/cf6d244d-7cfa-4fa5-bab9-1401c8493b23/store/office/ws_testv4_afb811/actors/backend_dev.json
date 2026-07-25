@@ -11,18 +11,18 @@
       "persona_id": "backend_dev",
       "pet_slug": null,
       "position": [
-        5.014604568481445,
-        -10.951102256774902
+        4.956501007080078,
+        -10.491572380065918
       ],
       "scale": 1.0
     }
   ],
   "persona_id": "backend_dev",
   "persona_instance_id": null,
-  "revision": 10,
+  "revision": 11,
   "schema_version": 1,
   "state": "active",
-  "updated_at": "2026-07-24T12:09:40.656810Z",
+  "updated_at": "2026-07-25T03:12:54.955364Z",
   "updated_by": "operator",
   "workspace_id": "ws_testv4_afb811"
 }
