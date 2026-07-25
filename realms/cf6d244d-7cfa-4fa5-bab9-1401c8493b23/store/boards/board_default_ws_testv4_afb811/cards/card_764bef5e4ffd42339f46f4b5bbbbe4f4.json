@@ -1,0 +1,20 @@
+{
+  "assignee": null,
+  "board_id": "board_default_ws_testv4_afb811",
+  "card_id": "card_764bef5e4ffd42339f46f4b5bbbbe4f4",
+  "checklist": [],
+  "column_id": "col_queued",
+  "created_at": "2026-07-24T13:52:15.261357Z",
+  "created_by": "operator",
+  "description": "test",
+  "labels": [],
+  "linked_goal_id": null,
+  "order_key": "i",
+  "priority": "p1",
+  "revision": 1,
+  "schema_version": 1,
+  "state": "active",
+  "title": "testt",
+  "updated_at": "2026-07-24T13:52:15.261357Z",
+  "updated_by": "operator"
+}

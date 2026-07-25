@@ -1,0 +1,39 @@
+{
+  "archived_card_ids": [
+    "card_73397cd40fe44b7ea1c6c3830bdd3a53"
+  ],
+  "board_id": "board_default_ws_testv4_afb811",
+  "columns": [
+    {
+      "column_id": "col_queued",
+      "kind": "queued",
+      "title": "Queued",
+      "wip_limit": null
+    },
+    {
+      "column_id": "col_active",
+      "kind": "active",
+      "title": "In Progress",
+      "wip_limit": null
+    },
+    {
+      "column_id": "col_review",
+      "kind": "review",
+      "title": "Review",
+      "wip_limit": null
+    },
+    {
+      "column_id": "col_done",
+      "kind": "done",
+      "title": "Complete",
+      "wip_limit": null
+    }
+  ],
+  "created_at": "2026-07-24T13:52:15.244356Z",
+  "revision": 1,
+  "schema_version": 1,
+  "title": "Board",
+  "updated_at": "2026-07-24T14:07:38.112187Z",
+  "updated_by": "operator",
+  "workspace_id": "ws_testv4_afb811"
+}

@@ -7,6 +7,14 @@ fallback_providers: []
 credential_pool_strategies: {}
 toolsets:
 - hermes-cli
+# 2026-07-23 operator ruling: mission-chat dev lanes do real repo work, so
+# restore the T6a-excluded heavy-dev toolsets on this persona's chat lane.
+# Mirrored in the root HERMES_HOME config.yaml — the chat-lane chokepoint
+# reads whichever home is active for the turn (profile-home override).
+agent_runtime:
+  personas:
+    backend_dev:
+      chat_lane_restore_toolsets: [file, terminal]
 agent:
   max_turns: 1000
   gateway_timeout: 1800
