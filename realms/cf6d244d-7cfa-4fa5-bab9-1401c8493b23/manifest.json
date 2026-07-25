@@ -1,66 +1,6 @@
 {
   "artifacts": [
     {
-      "destination": "config.yaml",
-      "kind": "persona_config",
-      "path": "profiles/backend-dev/config.yaml"
-    },
-    {
-      "destination": "MEMORY.md",
-      "kind": "profile_memory",
-      "path": "profiles/backend-dev/personas/backend_dev/memories/MEMORY.md"
-    },
-    {
-      "destination": "dev.md",
-      "kind": "system_prompt",
-      "path": "profiles/backend-dev/personas/backend_dev/system_prompt/dev.md"
-    },
-    {
-      "destination": "config.yaml",
-      "kind": "persona_config",
-      "path": "profiles/base/config.yaml"
-    },
-    {
-      "destination": "SOUL.md",
-      "kind": "soul_overlay",
-      "path": "profiles/base/personas/neko_supervisor/soul_overlay/SOUL.md"
-    },
-    {
-      "destination": "alice_supervisor.md",
-      "kind": "system_prompt",
-      "path": "profiles/base/personas/neko_supervisor/system_prompt/alice_supervisor.md"
-    },
-    {
-      "destination": "config.yaml",
-      "kind": "persona_config",
-      "path": "profiles/launcher-dev/config.yaml"
-    },
-    {
-      "destination": "MEMORY.md",
-      "kind": "profile_memory",
-      "path": "profiles/launcher-dev/personas/dev/memories/MEMORY.md"
-    },
-    {
-      "destination": "dev.md",
-      "kind": "system_prompt",
-      "path": "profiles/launcher-dev/personas/dev/system_prompt/dev.md"
-    },
-    {
-      "destination": "config.yaml",
-      "kind": "persona_config",
-      "path": "profiles/qa/config.yaml"
-    },
-    {
-      "destination": "MEMORY.md",
-      "kind": "profile_memory",
-      "path": "profiles/qa/personas/qa/memories/MEMORY.md"
-    },
-    {
-      "destination": "qa.md",
-      "kind": "system_prompt",
-      "path": "profiles/qa/personas/qa/system_prompt/qa.md"
-    },
-    {
       "destination": "SKILL.md",
       "kind": "skill",
       "path": "skills/launcher-stagec-mcp-screenshot/SKILL.md"
@@ -286,6 +226,36 @@
       "path": "store/office/ws_testv4_afb811/office.json"
     },
     {
+      "destination": "config.yaml",
+      "kind": "persona_config",
+      "path": "store/personas.yaml"
+    },
+    {
+      "destination": "MEMORY.md",
+      "kind": "profile_memory",
+      "path": "store/profile_files/backend-dev/memories/MEMORY.md"
+    },
+    {
+      "destination": "MEMORY.md",
+      "kind": "profile_memory",
+      "path": "store/profile_files/launcher-dev/memories/MEMORY.md"
+    },
+    {
+      "destination": "SOUL.md",
+      "kind": "soul_overlay",
+      "path": "store/profile_files/neko/SOUL.md"
+    },
+    {
+      "destination": "MEMORY.md",
+      "kind": "profile_memory",
+      "path": "store/profile_files/neko/memories/MEMORY.md"
+    },
+    {
+      "destination": "MEMORY.md",
+      "kind": "profile_memory",
+      "path": "store/profile_files/qa/memories/MEMORY.md"
+    },
+    {
       "destination": "realms/cf6d244d-7cfa-4fa5-bab9-1401c8493b23.json",
       "kind": "realm",
       "path": "store/realms/cf6d244d-7cfa-4fa5-bab9-1401c8493b23.json"
@@ -296,7 +266,7 @@
       "path": "store/workspaces/ws_testv4_afb811.json"
     }
   ],
-  "generated_at": "2026-07-25T00:56:34.507907-04:00",
+  "generated_at": "2026-07-25T12:47:47.369676-04:00",
   "kind": "realm_sync_manifest",
   "realm_id": "cf6d244d-7cfa-4fa5-bab9-1401c8493b23",
   "schema_version": 1,
