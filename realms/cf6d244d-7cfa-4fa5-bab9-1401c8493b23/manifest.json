@@ -11,29 +11,54 @@
       "path": "profiles/backend-dev/personas/backend_dev/memories/MEMORY.md"
     },
     {
-      "destination": "config.yaml",
-      "kind": "persona_config",
-      "path": "profiles/launcher-qa/config.yaml"
-    },
-    {
-      "destination": "MEMORY.md",
-      "kind": "profile_memory",
-      "path": "profiles/launcher-qa/personas/qa/memories/MEMORY.md"
+      "destination": "dev.md",
+      "kind": "system_prompt",
+      "path": "profiles/backend-dev/personas/backend_dev/system_prompt/dev.md"
     },
     {
       "destination": "config.yaml",
       "kind": "persona_config",
-      "path": "profiles/neko/config.yaml"
-    },
-    {
-      "destination": "MEMORY.md",
-      "kind": "profile_memory",
-      "path": "profiles/neko/personas/neko_supervisor/memories/MEMORY.md"
+      "path": "profiles/base/config.yaml"
     },
     {
       "destination": "SOUL.md",
       "kind": "soul_overlay",
-      "path": "profiles/neko/personas/neko_supervisor/soul_overlay/SOUL.md"
+      "path": "profiles/base/personas/neko_supervisor/soul_overlay/SOUL.md"
+    },
+    {
+      "destination": "alice_supervisor.md",
+      "kind": "system_prompt",
+      "path": "profiles/base/personas/neko_supervisor/system_prompt/alice_supervisor.md"
+    },
+    {
+      "destination": "config.yaml",
+      "kind": "persona_config",
+      "path": "profiles/launcher-dev/config.yaml"
+    },
+    {
+      "destination": "MEMORY.md",
+      "kind": "profile_memory",
+      "path": "profiles/launcher-dev/personas/dev/memories/MEMORY.md"
+    },
+    {
+      "destination": "dev.md",
+      "kind": "system_prompt",
+      "path": "profiles/launcher-dev/personas/dev/system_prompt/dev.md"
+    },
+    {
+      "destination": "config.yaml",
+      "kind": "persona_config",
+      "path": "profiles/qa/config.yaml"
+    },
+    {
+      "destination": "MEMORY.md",
+      "kind": "profile_memory",
+      "path": "profiles/qa/personas/qa/memories/MEMORY.md"
+    },
+    {
+      "destination": "qa.md",
+      "kind": "system_prompt",
+      "path": "profiles/qa/personas/qa/system_prompt/qa.md"
     },
     {
       "destination": "SKILL.md",
@@ -226,9 +251,24 @@
       "path": "skills/launcher-stagec-mcp-screenshot/references/stagec-smoke-kubeconfig-credential-preflight.md"
     },
     {
+      "destination": "boards/board_default_ws_testv4_afb811/board.json",
+      "kind": "board",
+      "path": "store/boards/board_default_ws_testv4_afb811/board.json"
+    },
+    {
+      "destination": "boards/board_default_ws_testv4_afb811/cards/card_764bef5e4ffd42339f46f4b5bbbbe4f4.json",
+      "kind": "board_card",
+      "path": "store/boards/board_default_ws_testv4_afb811/cards/card_764bef5e4ffd42339f46f4b5bbbbe4f4.json"
+    },
+    {
       "destination": "office/ws_testv4_afb811/actors/backend_dev.json",
       "kind": "office_actor",
       "path": "store/office/ws_testv4_afb811/actors/backend_dev.json"
+    },
+    {
+      "destination": "office/ws_testv4_afb811/actors/dev.json",
+      "kind": "office_actor",
+      "path": "store/office/ws_testv4_afb811/actors/dev.json"
     },
     {
       "destination": "office/ws_testv4_afb811/actors/neko_supervisor.json",
@@ -256,7 +296,7 @@
       "path": "store/workspaces/ws_testv4_afb811.json"
     }
   ],
-  "generated_at": "2026-07-19T07:23:43.453893-04:00",
+  "generated_at": "2026-07-24T23:10:17.158352-04:00",
   "kind": "realm_sync_manifest",
   "realm_id": "cf6d244d-7cfa-4fa5-bab9-1401c8493b23",
   "schema_version": 1,
