@@ -128,7 +128,7 @@ personas:
     api_mode: codex_responses
     autonomy: autonomous
     display_name: QA Agent
-    hermes_profile: qa
+    hermes_profile: launcher-qa
     include_core_context_files: false
     include_profile_memory: true
     model: gpt-5.6-luna

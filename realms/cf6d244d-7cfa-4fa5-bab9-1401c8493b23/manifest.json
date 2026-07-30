@@ -241,6 +241,11 @@
       "path": "store/profile_files/launcher-dev/memories/MEMORY.md"
     },
     {
+      "destination": "MEMORY.md",
+      "kind": "profile_memory",
+      "path": "store/profile_files/launcher-qa/memories/MEMORY.md"
+    },
+    {
       "destination": "SOUL.md",
       "kind": "soul_overlay",
       "path": "store/profile_files/neko/SOUL.md"
@@ -249,11 +254,6 @@
       "destination": "MEMORY.md",
       "kind": "profile_memory",
       "path": "store/profile_files/neko/memories/MEMORY.md"
-    },
-    {
-      "destination": "MEMORY.md",
-      "kind": "profile_memory",
-      "path": "store/profile_files/qa/memories/MEMORY.md"
     },
     {
       "destination": "realms/cf6d244d-7cfa-4fa5-bab9-1401c8493b23.json",
@@ -266,7 +266,7 @@
       "path": "store/workspaces/ws_testv4_afb811.json"
     }
   ],
-  "generated_at": "2026-07-25T12:47:47.369676-04:00",
+  "generated_at": "2026-07-30T10:14:22.670667-04:00",
   "kind": "realm_sync_manifest",
   "realm_id": "cf6d244d-7cfa-4fa5-bab9-1401c8493b23",
   "schema_version": 1,

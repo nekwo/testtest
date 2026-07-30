@@ -1,7 +1,7 @@
 ---
 name: launcher-stagec-mcp-screenshot
-description: "Eternia Launcher Stage C MCP-first screenshot workflow: launch/open via MCP, login via MCP if needed, navigate via MCP, then capture current window with mcp_launcher_qa_screenshot_window and send MEDIA."
-version: 1.0.0
+description: "Eternia Launcher Stage C MCP-first screenshot workflow: screenshot the live window directly when that answers the ask; otherwise launch/open via MCP, login via MCP if needed, navigate via MCP, then capture with mcp_launcher_qa_screenshot_window and send MEDIA."
+version: 1.1.0
 metadata:
   hermes:
     tags: [eternia-launcher, stage-c, mcp, screenshot, windows, qa]
@@ -48,6 +48,64 @@ metadata:
 
 ## Core rule
 
+**Never kill Tony's live Launcher session to take a screenshot.** (Live incident 2026-07-25: `open_app_tab(reap_stale=true)` name-reaped the operator's running Launcher mid-conversation, and the Hermes serve child executing the requesting agent's own turn died with it. The reap is manifest-scoped now — it can only touch QA-launched processes — but the workflow rule stands.)
+
+Choose the lane by what the ask actually needs:
+
+- **"Screenshot the current app / what's on screen now"** → message the existing QA persona/session through `hermes harness mission-chat message` and have that admitted QA turn call `mcp_launcher_qa_screenshot_window` directly. The tool is a pure capture primitive — no launch, no attach, no login, no reap — and captures Tony's live window by title prefix (`Eternia Launcher` matches both normal and `(stagec-smoke)` titles). Do not substitute generic Codex MCP or a helper process, and do not ask QA to run `open_app_tab` / `launch_or_attach` first; those controls cannot attach to a user-launched Launcher and will spawn a second instance.
+- **Driven proof (navigate, click, login, verify state)** → the full MCP control path below. This requires a QA-profile (`stagec-smoke`) marionette launch — a separate logged-in identity, side by side with any user session. Default `reap_stale:false`; pass `reap_stale:true` only to clear stale QA corpses from earlier QA launches (it is manifest-scoped and never touches a user-launched Launcher).
+
+### ONE-OFF MISSION CONTROL QA PROOF: DIRECT EXISTING CHAT ONLY
+
+**The mission-task/graph/worker route is deprecated and prohibited for a one-off QA
+proof request, as part of the global persona-chat routing rule.** Do not use
+`--allow-mission-goal`, create/resume/unblock/tick a task, nudge a worker, or spawn a
+goal/persona merely to call `launcher_qa`. The earlier task-lane diagnosis caused
+unnecessary runs and retries. A goal/task is only appropriate when the user explicitly
+requests a durable multi-stage mission.
+
+The verified route is the higher Mission Control normal-chat layer, not generic Codex
+MCP and not the core `hermes -p launcher-qa chat` entry point:
+
+1. Boot the normal Launcher and wait for Mission Control to settle.
+2. Inspect the current level/roster first with `hermes harness snapshot --json`.
+   Select the existing visible QA persona instance and reuse its
+   `default_chat_session_id`; do not create another instance.
+3. Record the configured/persisted QA binding with `hermes harness agent list --json`
+   and inspect the exact instance with `hermes harness persona-instance detail
+   <instance> --json`. Do not mutate the binding during an identity probe; the live
+   message admission receipt in the next step is authoritative for tool availability.
+4. Send a no-tool identity/schema turn through `hermes harness mission-chat message`
+   with explicit `--persona qa`, `--persona-instance-id`, `--session-id`, and a unique
+   `--client-message-id`. Require `profile_timing.mcp_admitted_servers=1`, 26 loaded
+   Launcher QA tools, zero calls spent, and `run_ids: []`.
+5. Send one non-mutating semantic MCP request through the same chat. Require a real
+   chat tool receipt plus `mcp_calls_spent=1` before asking for navigation or pixels.
+6. Only then request the bounded QA action. For screenshots, report only an actual PNG
+   and reproduce its `MEDIA:<absolute path>` line verbatim.
+
+Do not misread the static `persona-instance detail` preview. It renders the `harness`
+preview lane and may say `mcp_not_registered_on_lane`; the actual `mission-chat
+message` turn performs MCP admission/discovery. Verified live on 2026-07-28 using
+existing `personainst_qa` and session
+`persona_chat_personainst_qa_469e5554a197`: identity turn
+`stagec-direct-route-identity-20260728-1633` admitted one server and loaded 26 tools;
+semantic turn `stagec-direct-runtime-state-20260728-1635` spent exactly one MCP call,
+and `mcp_launcher_qa_get_runtime_state` succeeded with no run IDs. It attached to PID
+26544 via `direct_control`, entrypoint `lib/main_marionette.dart`, Launcher credential
+profile `stagec-smoke`, and Harness root `.hermes/agent-runtime` resolved from `env`.
+The Hermes agent profile (`launcher-qa`) and Launcher credential profile
+(`stagec-smoke`) are distinct and both must be reported accurately.
+
+Historical task `task_0a929926`, its runs/incidents/proofs, and artifact
+`X:\Eternia\.hermes\agent-runtime\proofs\task_0a929926\artifacts\mission_control_20260728120007538.png`
+remain diagnostic history only; they are not routing precedent. That loaded PNG also
+shows duplicate projected role markers; their cause and lifecycle classification are
+unresolved. Boot and settle Launcher/Mission Control, inspect current identities, and
+reuse the existing QA chat before classifying them. Do not create or clean up agents;
+destructive cleanup requires a duplicate to persist after warm routing, exact identity
+verification, and explicit user approval.
+
 Use the **MCP control path end-to-end**. For Tony-facing visual proof, make the Launcher window foreground and fullscreen/maximized before capturing screenshots or starting a recording. Use PNG screenshots or sampled key frames for model/vision analysis by default; keep MP4/video artifacts as human proof unless the bug depends on motion/timing/transitions.
 
 When Tony asks for a specific Mission Control lower panel such as the **Live Agent Terminal**, scroll down to that exact target first and verify the PNG visibly contains the requested terminal/proof/stage area before sending. Do not substitute an overview, a Run Inspector header, or a resize-only workaround as exact-panel proof. If the requested panel is inside the spatial/game/right-inspector surface and semantic controls are missing, record the semantic-control gap and treat coordinate clicks/resizing as debug fallback only. See `references/mission-control-spatial-semantic-controls.md`.
@@ -70,9 +128,12 @@ When a card/user provides a screenshot PNG path as evidence, treat the path itse
 
 Do **not** start by filesystem-searching helper scripts or hand-driving unrelated PS1/direct-control flows. Helpers are allowed only as bounded MCP invocation wrappers when first-class in-chat MCP tools are not exposed/stale; they still call the MCP server tools.
 
-## Current validated command sequence
+## Historical bounded MCP-helper fallback (not the one-off Mission Control route)
 
-From repo root `X:\Unreal Engine\Engine\Launcher\EterniaLauncher`, using the bounded MCP helper:
+Use this only when the existing QA chat's MCP admission or loaded wrapper schema is
+unavailable/stale and the exact gap has been recorded. It is not the default one-off
+Mission Control protocol and must not be used to bypass inspection/reuse of an existing
+QA persona/session. From repo root `X:\Unreal Engine\Engine\Launcher\EterniaLauncher`:
 
 ```bash
 cd 'X:/Unreal Engine/Engine/Launcher/EterniaLauncher'
@@ -80,7 +141,7 @@ cd 'X:/Unreal Engine/Engine/Launcher/EterniaLauncher'
 powershell.exe -NoProfile -ExecutionPolicy Bypass \
   -File docs/stages/qa-reboot/scripts/Invoke-LauncherQaMcpTool.ps1 \
   -Tool mcp_launcher_qa_open_app_tab \
-  -ArgsJson '{"tab":"library","browser_login":true,"credential_profile":"stagec-smoke","screenshot":false,"reap_stale":true}' \
+  -ArgsJson '{"tab":"library","browser_login":true,"credential_profile":"stagec-smoke","screenshot":false,"reap_stale":false}' \
   -CallTimeoutSeconds 240
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass \
@@ -105,7 +166,7 @@ Use for launch/attach + auth/navigation. Important args:
 - `browser_login: true`: allow MCP to perform the browser-login fallback if needed.
 - `credential_profile: stagec-smoke`: use the Stage C smoke credentials/profile.
 - `screenshot: false` when you intend to call the primitive screenshot tool afterward.
-- `reap_stale: true` for clean acceptance screenshots unless intentionally reusing a known healthy session.
+- `reap_stale: false` by default — attach to a known healthy QA session when one exists. Pass `reap_stale: true` only when a stale/broken QA launch must be cleared first; the reap is manifest-scoped (only PIDs recorded in `direct_exe_*\_active\pid_*.json` QA launch manifests) and never touches a user-launched Launcher.
 
 Acceptance fields before screenshot:
 
@@ -168,6 +229,9 @@ Before starting FFmpeg for Mission Control proof, verify the Launcher is already
 
 ## Pitfalls
 
+- The `stagec-smoke` account follows no communities, so the Posts **For You** feed is a genuine near-empty dark page — `screenshot_window` will correctly refuse it as `low_information_capture` (~95% blank pixels on a real render). For Posts visual proof, navigate to the **Explore** tab (has content) before capturing, or use the marionette internal Flutter screenshot fallback and label it as such. Verified live 2026-07-25: semantic state healthy + internal capture showed the true empty-state card; the PrintWindow gate was honest, not broken.
+- The QA window is PERSISTENT (2026-07-25 job-escape): it survives MCP server exits and `launch_or_attach`/`open_app_tab` re-attach to it across calls (`attached_from_disk:true`, same PID). Do not treat a still-running QA window from a previous call as stale; attach to it. If its runtime gate fails, the tools self-heal (reap that instance + relaunch) automatically — a `self_heal_relaunch:true` in the envelope diagnostics says that happened.
+
 - When Tony says the target is “the terminal,” “the dingus,” or another specific lower panel, the required proof is that exact panel after scrolling down to it. Do not send the page overview, top Run Inspector metadata, or a window-resize workaround as the answer. Use semantic scroll controls first; only if the target still cannot be exposed should you report the exact QA-control/layout gap.
 - For Mission Control video proof, prefer a bounded FFmpeg recording (`ffmpeg -f gdigrab ... -t <seconds> ...mp4`) over a background recording that must be killed. Force-killing FFmpeg can leave an invalid MP4 with `moov atom not found`; verify the final artifact with `ffprobe` before sending. When recording Mission Control specifically, prefer exact window-title capture (`-i title='Eternia Launcher (stagec-smoke)'`) plus one sampled-frame sanity check; desktop capture can accidentally record a browser/foreground app. See `references/mission-control-video-recording-and-live-goal-smoke.md` and `references/mission-control-window-title-video-capture.md`.
 - For Launcher QA Smoke Mission Control proof, pin the Launcher child process to the same Harness runtime root/profile used by CLI checks before trusting empty/active mission state. **Always pass explicit `hermes_profile`, `harness_runtime_root`, and `hermes_home` on `open_app_tab` / `launch_or_attach` smoke runs**, then verify the launch envelope reports `app.hermes_profile` non-null, `app.harness_runtime_root_configured:true`, and `app.hermes_home_configured:true`. If the envelope is unpinned (`hermes_profile:null` or `harness_runtime_root_configured:false`), treat the screenshot/video as invalid smoke proof even if navigation/auth succeeded; rerun pinned instead of diagnosing UI state. Distinguish real-empty (`open_tasks == 0` and mapped active goals `0` from the exact pinned root) from bridge-unavailable and parity-mismatch states. If Tony's normal Launcher shows goals but pinned smoke shows none, first compare the exact Harness store/root/profile for normal vs smoke; this is usually a root/profile mismatch, not proof that Mission Control mapping regressed. If CLI reports open/blocked/running work while Launcher maps zero active goals for the same pinned root, render/report a bridge diagnostic intervention rather than accepting empty UI as proof. If the helper script supports env-pinning flags but the launch envelope still shows unpinned fields after passing pins, audit the MCP launch manager/composer (`buildLaunchArgs`, open-tab launch composition) for missing argument forwarding before changing Mission Control UI mapping. Post-fix, preserve the guardrail that pinned requests refuse unpinned live disk sessions with a bounded env-pin mismatch instead of silently attaching. See `references/mission-control-launcher-qa-smoke-env-parity.md`.
@@ -186,7 +250,7 @@ Before starting FFmpeg for Mission Control proof, verify the Launcher is already
 - When a Mission Control screenshot shows `0 active missions` / `0 active runs`, do not overclaim populated run-inspector proof. It can prove static surfaces such as `Mission Playback`, `Archive Controls`, and active/archive separation, but a populated `Run Inspector` requires a live/seeded run or widget-test proof. Report this as partial visual proof unless the run inspector is actually visible with run rows.
 - For Mission Control archive/history changes, visual proof must show the actual unified surface when claiming live UX proof: `Ready for Archive`, `Mission Playback`, and `Archive Controls` should be in one panel, and `View Archive` must visibly change state. If the unified section is below the fold, use the generic semantic shell scroll controls (`get_buttons(scope="shell.scroll")`, then `click_button(id="shell.scroll.down")`/`shell.scroll.bottom`) and verify scroll telemetry (`y`, `max_y`, `can_scroll_down`) changes before capturing proof. Do not coordinate-scroll/click or overclaim the screenshot. If `shell.scroll` is missing on a content-rich shell page, report a semantic-control regression/gap and pair nearest live PNG proof with deterministic widget tests. See `references/stagec-shell-scroll-and-mission-control-archive-proof.md` and `agent-runtime-harness` reference `mission-control-archive-ux-and-terminal-contract.md`.
 - When Tony asks for a Mission Control terminal screenshot, the deliverable must be a readable PNG of the right-side `Run Inspector` / `Live Agent Terminal`, not merely semantic MCP state. If the terminal/right-side scene is below the fold, use `get_buttons` to verify `shell.scroll.*` controls, click semantic `shell.scroll.down`, verify `state.y` increased, then capture the same running session; do not coordinate-scroll or relaunch after scrolling unless rebuilding. If `shell.scroll` controls are absent, rebuild the QA target with `flutter build windows --debug --target lib/main_marionette.dart` and relaunch before retrying. If `shell.scroll.bottom` reaches `y=max_y` but the screenshot still only shows the top Run Inspector metadata and not `Live Agent Terminal`, `Terminal index`, transcript rows, `Inspect proof image`, or `Proof Image Inspector`, classify it as partial proof plus a page-local right-inspector semantic-scroll gap; do not overclaim exact terminal/proof pixels. If MCP reports `selected_tab=missionControl`, shell mounted, no loading overlay, and no error banner, but PrintWindow and foreground captures are uniform white, classify it as `live Windows pixel proof blocked: white render surface` and do **not** send the blank image as proof. A widget/golden fallback may be used only as clearly-labeled partial evidence; if GoogleFonts/test capture renders text as block glyphs, treat it as layout-only and not readable terminal proof. See `references/mission-control-terminal-screenshot-white-render.md`, `references/mission-control-semantic-shell-scroll-terminal-proof.md`, and `references/mission-control-right-inspector-terminal-proof.md`.
-- If rebuilding the Windows debug executable fails because `WebView2Loader.dll` is locked by `eternia_launcher`, close/kill the Launcher and rebuild, then relaunch for screenshot proof; this is a freshness/lock recovery step, not a product defect.
+- If rebuilding the Windows debug executable fails because `WebView2Loader.dll` is locked by the user's normal `eternia_launcher`, do not close/kill it automatically. Record the exact PID/locked output as the pre-MCP freshness blocker and ask the user to close it or authorize an isolated QA build output. Verified 2026-07-28: PID 36404 locked the main Debug `WebView2Loader.dll`; Harness produced only a failed log proof, no semantic envelope or PNG.
 - If Stage C authenticated screenshot QA fails with `auth_secret_unavailable`, do not conclude the credentials were never provisioned. First check Tony's Windows Rancher kubeconfig at `C:\Users\beast\.kube\config` / `/c/Users/beast/.kube/config`: `kubectl` may be present while the kubeconfig token is stale/reset or its embedded `certificate-authority-data` mismatches Rancher's public proxy cert. Use redaction-safe checks (`kubectl auth can-i ...`, `kubectl get secret ... -o name`, key names only) and, if the Rancher-generated config fails TLS but works with `--insecure-skip-tls-verify=true`, restore the pragmatic working setting with `kubectl config set-cluster local --insecure-skip-tls-verify=true`. See `references/stagec-rancher-kubeconfig-tls-reset.md`.
 - If MCP reports authenticated/mounted/navigated state but `screenshot_window` returns repeated `blank_capture`, bring the Launcher foreground and take a bounded diagnostic foreground capture only to separate capture-method compatibility from true visual rendering failure. If the foreground capture is also blank, switch to a known-good tab once; if still blank, classify the result as a high-severity visual QA blocker instead of describing the target screen as visually reviewed. See `references/stagec-blank-visual-after-semantic-nav.md`.
 - If browser login fails with `auth_secret_unavailable`, do **not** conclude the Stage C agent credentials were never created. First diagnose the credential source chain precisely: Windows `kubectl` should be reachable from Git Bash/MSYS, default kubeconfig is usually `C:\Users\beast\.kube\config`, and the helper expects `eternia-staging/stagec-smoke-credentials` with `username`/`password` keys. Safe checks are `kubectl config current-context`, `kubectl auth can-i get secret/stagec-smoke-credentials -n eternia-staging`, and `kubectl -n eternia-staging get secret stagec-smoke-credentials -o name`. If those fail with `Unauthorized`, classify stale kube token/session; if they fail with `x509: certificate signed by unknown authority` after config restore, verify/repair the kubeconfig CA or use the established Rancher-context workaround (`kubectl --insecure-skip-tls-verify=true ...` / cluster config set) before blocking screenshot QA. Never print secret `.data` values; only report secret name/key names.
