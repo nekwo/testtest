@@ -19,10 +19,10 @@
   ],
   "persona_id": "dev",
   "persona_instance_id": null,
-  "revision": 23,
+  "revision": 27,
   "schema_version": 1,
   "state": "active",
-  "updated_at": "2026-07-25T05:12:33.516001Z",
+  "updated_at": "2026-07-27T15:05:37.677901Z",
   "updated_by": "operator",
   "workspace_id": "ws_testv4_afb811"
 }
