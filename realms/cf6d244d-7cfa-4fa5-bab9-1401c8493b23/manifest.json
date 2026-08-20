@@ -201,24 +201,24 @@
       "path": "store/boards/board_default_ws_testv4_afb811/cards/card_764bef5e4ffd42339f46f4b5bbbbe4f4.json"
     },
     {
-      "destination": "office/ws_testv4_afb811/actors/backend_dev.json",
+      "destination": "office/ws_testv4_afb811/actors/personainst_backend_dev_agent_f5f3f064.json",
       "kind": "office_actor",
-      "path": "store/office/ws_testv4_afb811/actors/backend_dev.json"
+      "path": "store/office/ws_testv4_afb811/actors/personainst_backend_dev_agent_f5f3f064.json"
     },
     {
-      "destination": "office/ws_testv4_afb811/actors/dev.json",
+      "destination": "office/ws_testv4_afb811/actors/personainst_dev_agent_8f685ad1.json",
       "kind": "office_actor",
-      "path": "store/office/ws_testv4_afb811/actors/dev.json"
+      "path": "store/office/ws_testv4_afb811/actors/personainst_dev_agent_8f685ad1.json"
     },
     {
-      "destination": "office/ws_testv4_afb811/actors/neko_supervisor.json",
+      "destination": "office/ws_testv4_afb811/actors/personainst_neko_supervisor_agent_32bebbc9.json",
       "kind": "office_actor",
-      "path": "store/office/ws_testv4_afb811/actors/neko_supervisor.json"
+      "path": "store/office/ws_testv4_afb811/actors/personainst_neko_supervisor_agent_32bebbc9.json"
     },
     {
-      "destination": "office/ws_testv4_afb811/actors/qa.json",
+      "destination": "office/ws_testv4_afb811/actors/personainst_qa_agent_f24601ba.json",
       "kind": "office_actor",
-      "path": "store/office/ws_testv4_afb811/actors/qa.json"
+      "path": "store/office/ws_testv4_afb811/actors/personainst_qa_agent_f24601ba.json"
     },
     {
       "destination": "office/ws_testv4_afb811/office.json",
@@ -266,7 +266,7 @@
       "path": "store/workspaces/ws_testv4_afb811.json"
     }
   ],
-  "generated_at": "2026-07-30T10:14:22.670667-04:00",
+  "generated_at": "2026-08-20T18:20:59.510803-04:00",
   "kind": "realm_sync_manifest",
   "realm_id": "cf6d244d-7cfa-4fa5-bab9-1401c8493b23",
   "schema_version": 1,
