@@ -12,6 +12,14 @@ metadata:
 
 ## Linked references
 
+> **Historical-vocabulary note (2026-07-30):** the harness goal/task mission lane was
+> removed (`docs/agent-runtime-harness/16-mission-lane-removal.md`); there are no
+> goals, missions, runs, proof gates, or Active Missions counts any more. Lessons
+> below that speak of "recording a Harness goal", "Active Missions cards/counts", or
+> "Run Inspector" carry their capture/parity/env-pinning principles forward, but their
+> mission-era specifics are historical — apply the principle to the chat lane, roster,
+> board, and agent graph instead.
+
 - `references/posts-algorithm-controls-visual-proof.md` — Posts right-rail Algorithm Controls proof lesson: reject stale/empty/loading/overflow screenshots, rebuild stale binaries, degrade read-only config hydration to fallback on backend HTML/500, and require visible sliders/no Flutter overflow before attaching screenshot proof.
 - `references/library-mcp-semantic-action-pitfall.md` — Library semantic MCP item clicks can select rather than open; enumerate controls, use explicit details action, verify `library.details`, and respect scroll target schema.
 - `references/mission-control-screenshot-qa-lane.md` — Mission Control / Agent Runtime Harness UI changes need live Stage C PNG proof when available; if skipped or blocked, explicitly report `live Stage C screenshot QA not performed` and the reason.
@@ -57,12 +65,12 @@ Choose the lane by what the ask actually needs:
 
 ### ONE-OFF MISSION CONTROL QA PROOF: DIRECT EXISTING CHAT ONLY
 
-**The mission-task/graph/worker route is deprecated and prohibited for a one-off QA
-proof request, as part of the global persona-chat routing rule.** Do not use
-`--allow-mission-goal`, create/resume/unblock/tick a task, nudge a worker, or spawn a
-goal/persona merely to call `launcher_qa`. The earlier task-lane diagnosis caused
-unnecessary runs and retries. A goal/task is only appropriate when the user explicitly
-requests a durable multi-stage mission.
+**The mission-task/graph/worker route no longer exists (mission lane removed
+2026-07-30 — see `docs/agent-runtime-harness/16-mission-lane-removal.md`).** There is
+no `--allow-mission-goal`, no task to create/resume/unblock/tick, no worker to nudge,
+and no goal to spawn. The direct QA chat turn below is the only route; do not go
+looking for a heavier one. Do not spawn a new persona instance merely to call
+`launcher_qa` — reuse the existing visible QA instance.
 
 The verified route is the higher Mission Control normal-chat layer, not generic Codex
 MCP and not the core `hermes -p launcher-qa chat` entry point:
@@ -122,7 +130,7 @@ For user-facing Mission Control UI changes, live Stage C screenshot QA is the st
 
 When Tony asks for a screenshot, the deliverable is the captured PNG. Do not block the response on optional golden-test validation or visual-regression artifact generation after a live screenshot is already captured. If extra validation fails because of test-only asset/font setup, clean up temporary test files, report the validation blocker separately, and send the PNG immediately.
 
-For Mission Control video/screenshot proof, the artifact must visibly show the exact claimed UI state. If a live Harness goal is created or run, verify the Launcher pixels show the corresponding Active Missions card/counts. CLI/Harness success without visible Active Missions evidence is not valid UI proof; report the Launcher/read-model mismatch as a high-severity regression instead of presenting the artifact as success.
+For Mission Control video/screenshot proof, the artifact must visibly show the exact claimed UI state. If a live chat turn, board change, or roster change drove the claim, verify the Launcher pixels show the corresponding panel state (agent roster, chat transcript, board card, runtime graph). CLI/Harness success without the matching visible evidence is not valid UI proof; report the Launcher/read-model mismatch as a high-severity regression instead of presenting the artifact as success.
 
 When a card/user provides a screenshot PNG path as evidence, treat the path itself as the evidence handle. Do **not** read or base64-load PNG bytes unless visual inspection is explicitly required; record the path, source tool, dimensions/byte_count if already available from the capture envelope, and proceed.
 
@@ -221,7 +229,7 @@ For video requests, maximize/fullscreen the Launcher first, record with a bounde
 MEDIA:C:\\\\Users\\\\beast\\\\AppData\\\\Local\\\\EterniaLauncher\\\\stagec-smoke-local\\\\videos\\\\mission_control_test_goal_<timestamp>.mp4
 ```
 
-Treat video as **human proof by default**. Do not send full videos to model vision unless motion/timing is the actual bug; if the question is static and a video already exists, sample one key frame or capture a PNG instead. Do not add visual analysis unless requested. If a Harness smoke goal ran during the capture, include only the compact final state/blocker unless Tony asks for logs.
+Treat video as **human proof by default**. Do not send full videos to model vision unless motion/timing is the actual bug; if the question is static and a video already exists, sample one key frame or capture a PNG instead. Do not add visual analysis unless requested. If a live harness interaction (a chat turn, board change) ran during the capture, include only the compact final state/blocker unless Tony asks for logs.
 
 ## Video proof preflight
 
@@ -234,7 +242,7 @@ Before starting FFmpeg for Mission Control proof, verify the Launcher is already
 
 - When Tony says the target is “the terminal,” “the dingus,” or another specific lower panel, the required proof is that exact panel after scrolling down to it. Do not send the page overview, top Run Inspector metadata, or a window-resize workaround as the answer. Use semantic scroll controls first; only if the target still cannot be exposed should you report the exact QA-control/layout gap.
 - For Mission Control video proof, prefer a bounded FFmpeg recording (`ffmpeg -f gdigrab ... -t <seconds> ...mp4`) over a background recording that must be killed. Force-killing FFmpeg can leave an invalid MP4 with `moov atom not found`; verify the final artifact with `ffprobe` before sending. When recording Mission Control specifically, prefer exact window-title capture (`-i title='Eternia Launcher (stagec-smoke)'`) plus one sampled-frame sanity check; desktop capture can accidentally record a browser/foreground app. See `references/mission-control-video-recording-and-live-goal-smoke.md` and `references/mission-control-window-title-video-capture.md`.
-- For Launcher QA Smoke Mission Control proof, pin the Launcher child process to the same Harness runtime root/profile used by CLI checks before trusting empty/active mission state. **Always pass explicit `hermes_profile`, `harness_runtime_root`, and `hermes_home` on `open_app_tab` / `launch_or_attach` smoke runs**, then verify the launch envelope reports `app.hermes_profile` non-null, `app.harness_runtime_root_configured:true`, and `app.hermes_home_configured:true`. If the envelope is unpinned (`hermes_profile:null` or `harness_runtime_root_configured:false`), treat the screenshot/video as invalid smoke proof even if navigation/auth succeeded; rerun pinned instead of diagnosing UI state. Distinguish real-empty (`open_tasks == 0` and mapped active goals `0` from the exact pinned root) from bridge-unavailable and parity-mismatch states. If Tony's normal Launcher shows goals but pinned smoke shows none, first compare the exact Harness store/root/profile for normal vs smoke; this is usually a root/profile mismatch, not proof that Mission Control mapping regressed. If CLI reports open/blocked/running work while Launcher maps zero active goals for the same pinned root, render/report a bridge diagnostic intervention rather than accepting empty UI as proof. If the helper script supports env-pinning flags but the launch envelope still shows unpinned fields after passing pins, audit the MCP launch manager/composer (`buildLaunchArgs`, open-tab launch composition) for missing argument forwarding before changing Mission Control UI mapping. Post-fix, preserve the guardrail that pinned requests refuse unpinned live disk sessions with a bounded env-pin mismatch instead of silently attaching. See `references/mission-control-launcher-qa-smoke-env-parity.md`.
+- For Launcher QA Smoke Mission Control proof, pin the Launcher child process to the same Harness runtime root/profile used by CLI checks before trusting empty/populated panel state (roster, chats, boards, graph). **Always pass explicit `hermes_profile`, `harness_runtime_root`, and `hermes_home` on `open_app_tab` / `launch_or_attach` smoke runs**, then verify the launch envelope reports `app.hermes_profile` non-null, `app.harness_runtime_root_configured:true`, and `app.hermes_home_configured:true`. If the envelope is unpinned (`hermes_profile:null` or `harness_runtime_root_configured:false`), treat the screenshot/video as invalid smoke proof even if navigation/auth succeeded; rerun pinned instead of diagnosing UI state. Distinguish real-empty (an empty roster/board from the exact pinned root, matching `harness persona list` / `board list`) from bridge-unavailable and parity-mismatch states. If Tony's normal Launcher shows instances/cards but pinned smoke shows none, first compare the exact Harness store/root/profile for normal vs smoke; this is usually a root/profile mismatch, not proof that Mission Control mapping regressed. If CLI reports instances/chats/cards while the Launcher maps an empty panel for the same pinned root, render/report a bridge diagnostic intervention rather than accepting empty UI as proof. If the helper script supports env-pinning flags but the launch envelope still shows unpinned fields after passing pins, audit the MCP launch manager/composer (`buildLaunchArgs`, open-tab launch composition) for missing argument forwarding before changing Mission Control UI mapping. Post-fix, preserve the guardrail that pinned requests refuse unpinned live disk sessions with a bounded env-pin mismatch instead of silently attaching. See `references/mission-control-launcher-qa-smoke-env-parity.md`.
 - Schema first: before calling page-local tools such as `scroll`, check the MCP tool's supported targets and current semantic buttons. Do not call `scroll` for Library unless the schema explicitly exposes a Library scroll target; current scroll targets may be limited to `shell`, `news.feed`, and `posts.feed`. For Library, treat item clicks as select/focus actions and use a separate explicit open/details action, then verify `library.details`; see `references/stagec-mcp-scroll-click-sequencing.md` and `references/library-semantic-click-scroll-pitfalls.md`.
 - If `browser_login_helper_failed` / `auth_secret_unavailable` appears, distinguish **credential contract existence** from **active runner access**. The Stage C agent credential path may already be provisioned (`stagec-smoke`, `qa-stagec-smoke`, k8s `eternia-staging/stagec-smoke-credentials`, Windows Credential Manager `EterniaStageC/stagec-smoke`) while the current runner cannot reach it because kube auth is expired, Credential Manager fallback is absent, or interactive fallback is noninteractive. Report: “credential path exists/provisioned, current runner cannot access a source,” not “credentials do not exist.” See `references/stagec-smoke-credential-source-vs-runner-access.md`.
 - The bounded PowerShell helper is still an MCP invocation path. Do not call it “not MCP”; it launches/calls the Stage C MCP server with safe timeouts and envelopes.
