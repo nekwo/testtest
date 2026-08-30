@@ -1,4 +1,6 @@
 {
+  "agent_publish_mode": "workspace",
+  "agent_selection": [],
   "archived": false,
   "created_at": "2026-07-09T01:17:30.052616Z",
   "default_workspace_id": null,
@@ -16,11 +18,11 @@
   "server_id": "2ca6078f-8af9-4ed3-93b2-f5e1a7358020",
   "skill_publish_mode": "selected",
   "skill_selection": [
-    "launcher-stagec-mcp-screenshot"
+    "launcher-mcp-operations"
   ],
   "slug": "test-realm",
   "sync_manifest_ref": "https://github.com/nekwo/testtest.git",
-  "updated_at": "2026-07-19T06:02:56.383782Z",
+  "updated_at": "2026-08-28T19:03:06.968263Z",
   "workspace_ids": [
     "ws_testv4_afb811"
   ]
