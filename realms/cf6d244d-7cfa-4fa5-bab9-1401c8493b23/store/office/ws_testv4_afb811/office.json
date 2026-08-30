@@ -10,7 +10,8 @@
     "personainst_backend_dev_agent_f5f3f064",
     "personainst_qa_agent_f24601ba",
     "personainst_neko_supervisor_agent_56884980",
-    "personainst_neko_supervisor_agent_2a26ddcc"
+    "personainst_neko_supervisor_agent_2a26ddcc",
+    "personainst_neko_supervisor_agent_20c6e6b3"
   ],
   "created_at": "2026-07-18T05:22:26.688315Z",
   "folders": [
@@ -19,7 +20,7 @@
   ],
   "revision": 29,
   "schema_version": 1,
-  "updated_at": "2026-08-30T06:36:54.802504Z",
+  "updated_at": "2026-08-30T18:57:31.979213Z",
   "updated_by": "operator",
   "workspace_id": "ws_testv4_afb811"
 }
