@@ -1,28 +1,28 @@
 {
-  "actor_key": "personainst_neko_supervisor_agent_2a26ddcc",
+  "actor_key": "personainst_neko_supervisor_agent_20c6e6b3",
   "backing_profile": null,
-  "created_at": "2026-08-30T04:40:15.972367Z",
+  "created_at": "2026-08-30T06:37:02.754206Z",
   "items": [
     {
       "display_name": "Neko Mission Lead",
       "folder": "Agents",
-      "item_id": "personainst_neko_supervisor_agent_2a26ddcc",
+      "item_id": "personainst_neko_supervisor_agent_20c6e6b3",
       "kind": "agent",
       "persona_id": "neko_supervisor",
       "pet_slug": null,
       "position": [
-        1.4339330196380615,
-        -1.3605059385299683
+        1.9339330196380615,
+        -2.4781529903411865
       ],
       "scale": 1.0
     }
   ],
   "persona_id": "neko_supervisor",
-  "persona_instance_id": "personainst_neko_supervisor_agent_2a26ddcc",
-  "revision": 4,
+  "persona_instance_id": "personainst_neko_supervisor_agent_20c6e6b3",
+  "revision": 2,
   "schema_version": 1,
   "state": "active",
-  "updated_at": "2026-08-30T05:45:09.030027Z",
+  "updated_at": "2026-08-30T06:37:04.037700Z",
   "updated_by": "operator",
   "workspace_id": "ws_testv4_afb811"
 }
