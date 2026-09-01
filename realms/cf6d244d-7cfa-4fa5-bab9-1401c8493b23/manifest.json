@@ -156,14 +156,19 @@
       "path": "store/boards/board_default_ws_testv4_afb811/cards/card_764bef5e4ffd42339f46f4b5bbbbe4f4.json"
     },
     {
-      "destination": "office/ws_testv4_afb811/actors/personainst_neko_supervisor_agent_9682caf4.json",
+      "destination": "office/ws_testv4_afb811/actors/personainst_neko_supervisor_agent_2e94fab3.json",
       "kind": "office_actor",
-      "path": "store/office/ws_testv4_afb811/actors/personainst_neko_supervisor_agent_9682caf4.json"
+      "path": "store/office/ws_testv4_afb811/actors/personainst_neko_supervisor_agent_2e94fab3.json"
     },
     {
       "destination": "office/ws_testv4_afb811/office.json",
       "kind": "office",
       "path": "store/office/ws_testv4_afb811/office.json"
+    },
+    {
+      "destination": "persona_instances",
+      "kind": "persona_instance_config",
+      "path": "store/persona_instances.yaml"
     },
     {
       "destination": "config.yaml",
@@ -191,7 +196,7 @@
       "path": "store/workspaces/ws_testv4_afb811.json"
     }
   ],
-  "generated_at": "2026-08-30T14:59:45.211328-04:00",
+  "generated_at": "2026-09-01T01:40:29.616897-04:00",
   "kind": "realm_sync_manifest",
   "realm_id": "cf6d244d-7cfa-4fa5-bab9-1401c8493b23",
   "schema_version": 1,
