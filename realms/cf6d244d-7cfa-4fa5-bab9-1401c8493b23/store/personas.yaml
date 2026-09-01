@@ -1,37 +1,51 @@
 kind: realm_persona_config
 personas:
+  backend_dev:
+    api_mode: codex_responses
+    autonomy: autonomous
+    display_name: Backend Dev Agent
+    hermes_profile: backend-dev
+    include_core_context_files: false
+    include_profile_memory: false
+    repo_scope_label: EterniaBackend
+    role: dev
+    skills:
+    - harness-continuity
+    - harness-dev-delivery
+    system_prompt_path: personas/dev/system.md
+    toolsets:
+    - file
+    - search
+    - terminal
+    - session_search
+    - code_execution
+    - skills
   neko_supervisor:
     api_mode: codex_responses
     autonomy: propose_only
     chat_lane_restore_toolsets:
     - file
     display_name: Neko Mission Lead
-    hermes_profile: neko
+    hermes_profile: base
     include_core_context_files: false
-    include_profile_memory: true
+    include_profile_memory: false
     model: gpt-5.6-luna
     provider: openai-codex
     required_mcp_servers: []
     role: alice_supervisor
     skills:
-    - eternia-backend-tests
-    - eternia-hermes-agent
-    - eternia-launcher-workflow
-    - eternia-writing-plans
+    - harness-mission-lead
+    - harness-continuity
     - harness-runtime-model
-    - staged-deep-audit-delivery
-    - systematic-debugging
     soul_overlay_path: SOUL.md
-    system_prompt_path: ''
+    system_prompt_path: personas/neko_supervisor/system.md
     toolsets:
     - file
     - search
     - terminal
-    - code_execution
-    - web
-    - browser
     - session_search
-    - skills
+    - code_execution
     - todo
-    - vision
+    - skills
+    - mission_goal
 schema_version: 1
