@@ -11,7 +11,8 @@
     "personainst_qa_agent_f24601ba",
     "personainst_neko_supervisor_agent_56884980",
     "personainst_neko_supervisor_agent_2a26ddcc",
-    "personainst_neko_supervisor_agent_20c6e6b3"
+    "personainst_neko_supervisor_agent_20c6e6b3",
+    "personainst_neko_supervisor_agent_9682caf4"
   ],
   "created_at": "2026-07-18T05:22:26.688315Z",
   "folders": [
@@ -20,7 +21,7 @@
   ],
   "revision": 29,
   "schema_version": 1,
-  "updated_at": "2026-08-30T18:57:31.979213Z",
+  "updated_at": "2026-09-01T05:40:12.717810Z",
   "updated_by": "operator",
   "workspace_id": "ws_testv4_afb811"
 }
