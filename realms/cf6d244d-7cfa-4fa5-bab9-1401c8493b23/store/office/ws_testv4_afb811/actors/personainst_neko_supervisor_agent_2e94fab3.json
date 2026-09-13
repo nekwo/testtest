@@ -24,6 +24,6 @@
   "schema_version": 1,
   "state": "active",
   "updated_at": "2026-09-01T05:40:19.810730Z",
-  "updated_by": "realm_sync",
+  "updated_by": "operator",
   "workspace_id": "ws_testv4_afb811"
 }

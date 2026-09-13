@@ -8,6 +8,7 @@
   "created_by": "operator",
   "description": "test",
   "labels": [],
+  "linked_goal_id": null,
   "order_key": "i",
   "priority": "p1",
   "revision": 1,
