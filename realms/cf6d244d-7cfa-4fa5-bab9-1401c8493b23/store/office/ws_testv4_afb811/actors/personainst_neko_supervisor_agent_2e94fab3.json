@@ -10,7 +10,7 @@
       "kind": "agent",
       "minted_kind": "agent",
       "persona_id": "neko_supervisor",
-      "pet_slug": null,
+      "pet_slug": "chara:anime-girl",
       "position": [
         0.18393303453922272,
         -1.7069765329360962
@@ -20,10 +20,10 @@
   ],
   "persona_id": "neko_supervisor",
   "persona_instance_id": "personainst_neko_supervisor_agent_2e94fab3",
-  "revision": 1,
+  "revision": 2,
   "schema_version": 1,
   "state": "active",
-  "updated_at": "2026-09-01T05:40:19.810730Z",
+  "updated_at": "2026-09-22T12:43:39.327684Z",
   "updated_by": "operator",
   "workspace_id": "ws_testv4_afb811"
 }
