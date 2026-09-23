@@ -156,6 +156,11 @@
       "path": "store/boards/board_default_ws_testv4_afb811/cards/card_764bef5e4ffd42339f46f4b5bbbbe4f4.json"
     },
     {
+      "destination": "levels/ws_testv4_afb811.json",
+      "kind": "level",
+      "path": "store/levels/ws_testv4_afb811.json"
+    },
+    {
       "destination": "office/ws_testv4_afb811/actors/personainst_backend_dev_agent_9033415e.json",
       "kind": "office_actor",
       "path": "store/office/ws_testv4_afb811/actors/personainst_backend_dev_agent_9033415e.json"
@@ -206,7 +211,7 @@
       "path": "store/workspaces/ws_testv4_afb811.json"
     }
   ],
-  "generated_at": "2026-09-22T08:43:51.597904-04:00",
+  "generated_at": "2026-09-22T21:08:58.786577-04:00",
   "kind": "realm_sync_manifest",
   "realm_id": "cf6d244d-7cfa-4fa5-bab9-1401c8493b23",
   "schema_version": 1,
