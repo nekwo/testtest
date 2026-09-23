@@ -1,0 +1,1 @@
+{"version":8,"sceneId":"ws-ws_testv4_afb811","assets":[],"environment":{"deathZ":-20.0,"defaultSpawnId":"spawn/default"},"landscape":{"asset":{"key":"landscapes/flat-ground","revision":"flat-ground-v1"},"transform":{"position":[0.0,0.0],"scale":[32.0,32.0]}},"props":[],"spawns":[{"id":"spawn/default","position":[0.0,0.0],"facing":"south","kind":"default"}]}
