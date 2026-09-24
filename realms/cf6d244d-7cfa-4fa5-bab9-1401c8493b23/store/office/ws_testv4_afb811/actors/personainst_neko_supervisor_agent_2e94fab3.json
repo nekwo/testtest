@@ -12,18 +12,18 @@
       "persona_id": "neko_supervisor",
       "pet_slug": "chara:anime-girl",
       "position": [
-        0.6359838247299194,
-        -4.73809814453125
+        0.5156409740447998,
+        -4.9948320388793945
       ],
       "scale": 1.0
     }
   ],
   "persona_id": "neko_supervisor",
   "persona_instance_id": "personainst_neko_supervisor_agent_2e94fab3",
-  "revision": 6,
+  "revision": 8,
   "schema_version": 1,
   "state": "active",
-  "updated_at": "2026-09-24T19:56:30.603535Z",
+  "updated_at": "2026-09-24T19:57:37.844312Z",
   "updated_by": "operator",
   "workspace_id": "ws_testv4_afb811"
 }
