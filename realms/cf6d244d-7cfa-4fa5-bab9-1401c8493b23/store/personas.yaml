@@ -77,4 +77,38 @@ personas:
     - session_search
     - code_execution
     - skills
+  neko_supervisor:
+    api_mode: codex_responses
+    autonomy: propose_only
+    chat_lane_restore_toolsets:
+    - file
+    display_name: Neko Mission Lead
+    hermes_profile: neko
+    include_core_context_files: false
+    include_profile_memory: true
+    model: gpt-5.6-luna
+    provider: openai-codex
+    required_mcp_servers: []
+    role: alice_supervisor
+    skills:
+    - eternia-backend-tests
+    - eternia-hermes-agent
+    - eternia-launcher-workflow
+    - eternia-writing-plans
+    - harness-runtime-model
+    - staged-deep-audit-delivery
+    - systematic-debugging
+    soul_overlay_path: SOUL.md
+    system_prompt_path: ''
+    toolsets:
+    - file
+    - search
+    - terminal
+    - code_execution
+    - web
+    - browser
+    - session_search
+    - skills
+    - todo
+    - vision
 schema_version: 1

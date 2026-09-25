@@ -1,0 +1,29 @@
+{
+  "actor_key": "personainst_neko_supervisor_agent_ea89bae7",
+  "backing_profile": null,
+  "created_at": "2026-09-25T20:35:37.473035Z",
+  "items": [
+    {
+      "display_name": "Neko Mission Lead",
+      "folder": "Agents",
+      "item_id": "personainst_neko_supervisor_agent_ea89bae7",
+      "kind": "agent",
+      "minted_kind": "agent",
+      "persona_id": "neko_supervisor",
+      "pet_slug": "chara:anime-girl",
+      "position": [
+        -24.179927825927734,
+        97.00548553466797
+      ],
+      "scale": 1.0
+    }
+  ],
+  "persona_id": "neko_supervisor",
+  "persona_instance_id": "personainst_neko_supervisor_agent_ea89bae7",
+  "revision": 4,
+  "schema_version": 1,
+  "state": "active",
+  "updated_at": "2026-09-25T20:36:16.259915Z",
+  "updated_by": "operator",
+  "workspace_id": "ws_testv4_afb811"
+}
