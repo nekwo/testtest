@@ -37,6 +37,46 @@ personas:
     - session_search
     - code_execution
     - skills
+  dev:
+    api_mode: codex_responses
+    autonomy: autonomous
+    display_name: Launcher Dev Agent
+    hermes_profile: gpt-launcher
+    include_core_context_files: false
+    include_profile_memory: true
+    iteration_budget: 12
+    max_api_calls: 12
+    max_total_tokens: 600000
+    max_wall_seconds: 300.0
+    model: gpt-5.6-luna
+    provider: openai-codex
+    repo_scope_label: EterniaLauncher
+    required_mcp_servers: []
+    role: dev
+    skills:
+    - codebase-inspection
+    - eternia-hermes-agent
+    - eternia-launcher-workflow
+    - eternia-writing-plans
+    - flutter-ui-development
+    - github-code-review
+    - github-pr-workflow
+    - harness-dev-delivery
+    - harness-qa-verdict
+    - harness-runtime-model
+    - launcher-mcp-operations
+    - requesting-code-review
+    - staged-deep-audit-delivery
+    - systematic-debugging
+    - test-driven-development
+    system_prompt_path: ''
+    toolsets:
+    - file
+    - search
+    - terminal
+    - session_search
+    - code_execution
+    - skills
   neko_supervisor:
     api_mode: codex_responses
     autonomy: propose_only

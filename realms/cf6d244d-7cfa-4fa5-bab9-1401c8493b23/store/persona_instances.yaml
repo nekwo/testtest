@@ -7,6 +7,14 @@ instances:
     realm_id: cf6d244d-7cfa-4fa5-bab9-1401c8493b23
     spawned_by: operator
     workspace_id: ws_testv4_afb811
+  personainst_dev_agent_8b319ebf:
+    display_name: Launcher Dev Agent
+    id: personainst_dev_agent_8b319ebf
+    mode: chat
+    persona_id: dev
+    realm_id: cf6d244d-7cfa-4fa5-bab9-1401c8493b23
+    spawned_by: operator
+    workspace_id: ws_testv4_afb811
   personainst_neko_supervisor_agent_2e94fab3:
     display_name: Neko Mission Lead
     id: personainst_neko_supervisor_agent_2e94fab3
