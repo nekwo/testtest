@@ -171,6 +171,11 @@
       "path": "store/office/ws_testv4_afb811/actors/personainst_dev_agent_8b319ebf.json"
     },
     {
+      "destination": "office/ws_testv4_afb811/actors/personainst_neko_supervisor_agent_ea89bae7.json",
+      "kind": "office_actor",
+      "path": "store/office/ws_testv4_afb811/actors/personainst_neko_supervisor_agent_ea89bae7.json"
+    },
+    {
       "destination": "office/ws_testv4_afb811/office.json",
       "kind": "office",
       "path": "store/office/ws_testv4_afb811/office.json"
@@ -196,6 +201,16 @@
       "path": "store/profile_files/gpt-launcher/memories/MEMORY.md"
     },
     {
+      "destination": "SOUL.md",
+      "kind": "soul_overlay",
+      "path": "store/profile_files/neko/SOUL.md"
+    },
+    {
+      "destination": "MEMORY.md",
+      "kind": "profile_memory",
+      "path": "store/profile_files/neko/memories/MEMORY.md"
+    },
+    {
       "destination": "realms/cf6d244d-7cfa-4fa5-bab9-1401c8493b23.json",
       "kind": "realm",
       "path": "store/realms/cf6d244d-7cfa-4fa5-bab9-1401c8493b23.json"
@@ -206,7 +221,7 @@
       "path": "store/workspaces/ws_testv4_afb811.json"
     }
   ],
-  "generated_at": "2026-09-25T16:35:36.291732-04:00",
+  "generated_at": "2026-09-25T16:36:21.878232-04:00",
   "kind": "realm_sync_manifest",
   "realm_id": "cf6d244d-7cfa-4fa5-bab9-1401c8493b23",
   "schema_version": 1,
