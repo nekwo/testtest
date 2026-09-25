@@ -12,18 +12,18 @@
       "persona_id": "dev",
       "pet_slug": null,
       "position": [
-        1.693314552307129,
-        -4.529853820800781
+        2.2536187171936035,
+        -4.214471817016602
       ],
       "scale": 1.0
     }
   ],
   "persona_id": "dev",
   "persona_instance_id": "personainst_dev_agent_8b319ebf",
-  "revision": 3,
+  "revision": 4,
   "schema_version": 1,
   "state": "active",
-  "updated_at": "2026-09-25T13:39:39.263837Z",
+  "updated_at": "2026-09-25T20:33:36.234561Z",
   "updated_by": "operator",
   "workspace_id": "ws_testv4_afb811"
 }
