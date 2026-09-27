@@ -17,26 +17,26 @@ personas:
     required_mcp_servers: []
     role: dev
     skills:
-    - codebase-inspection
-    - eternia-backend-tests
-    - eternia-hermes-agent
-    - eternia-writing-plans
-    - github-code-review
-    - github-pr-workflow
-    - harness-dev-delivery
-    - harness-runtime-model
-    - requesting-code-review
-    - staged-deep-audit-delivery
-    - systematic-debugging
-    - test-driven-development
+      - codebase-inspection
+      - eternia-backend-tests
+      - eternia-hermes-agent
+      - eternia-writing-plans
+      - github-code-review
+      - github-pr-workflow
+      - harness-dev-delivery
+      - harness-runtime-model
+      - requesting-code-review
+      - staged-deep-audit-delivery
+      - systematic-debugging
+      - test-driven-development
     system_prompt_path: ''
     toolsets:
-    - file
-    - search
-    - terminal
-    - session_search
-    - code_execution
-    - skills
+      - file
+      - search
+      - terminal
+      - session_search
+      - code_execution
+      - skills
   dev:
     api_mode: codex_responses
     autonomy: autonomous
@@ -54,27 +54,27 @@ personas:
     required_mcp_servers: []
     role: dev
     skills:
-    - codebase-inspection
-    - eternia-hermes-agent
-    - eternia-launcher-workflow
-    - eternia-writing-plans
-    - flutter-ui-development
-    - github-code-review
-    - github-pr-workflow
-    - harness-dev-delivery
-    - harness-qa-verdict
-    - harness-runtime-model
-    - launcher-mcp-operations
-    - requesting-code-review
-    - staged-deep-audit-delivery
-    - systematic-debugging
-    - test-driven-development
+      - codebase-inspection
+      - eternia-hermes-agent
+      - eternia-launcher-workflow
+      - eternia-writing-plans
+      - flutter-ui-development
+      - github-code-review
+      - github-pr-workflow
+      - harness-dev-delivery
+      - harness-qa-verdict
+      - harness-runtime-model
+      - launcher-mcp-operations
+      - requesting-code-review
+      - staged-deep-audit-delivery
+      - systematic-debugging
+      - test-driven-development
     system_prompt_path: ''
     toolsets:
-    - file
-    - search
-    - terminal
-    - session_search
-    - code_execution
-    - skills
+      - file
+      - search
+      - terminal
+      - session_search
+      - code_execution
+      - skills
 schema_version: 1

@@ -10,7 +10,7 @@
       "kind": "agent",
       "minted_kind": "agent",
       "persona_id": "dev",
-      "pet_slug": null,
+      "pet_slug": "chara:anime-girl",
       "position": [
         2.2536187171936035,
         -4.214471817016602
@@ -20,10 +20,10 @@
   ],
   "persona_id": "dev",
   "persona_instance_id": "personainst_dev_agent_8b319ebf",
-  "revision": 4,
+  "revision": 5,
   "schema_version": 1,
   "state": "active",
-  "updated_at": "2026-09-25T20:33:36.234561Z",
+  "updated_at": "2026-09-26T23:33:34.732075Z",
   "updated_by": "operator",
   "workspace_id": "ws_testv4_afb811"
 }
