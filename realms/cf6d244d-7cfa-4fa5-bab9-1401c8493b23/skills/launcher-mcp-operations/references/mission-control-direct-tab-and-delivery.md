@@ -35,7 +35,8 @@ PNG, and report the validation blocker separately if relevant.
    - header: `X-Stagec-Qa-Nonce: <nonce>`
    - JSON body: `{ "tab": "missionControl" }`
 3. Verify the navigation state reports the requested tab selected.
-4. Capture the actual visible window with `mcp_launcher_qa_screenshot_window`.
+4. Capture the frame with `mcp_launcher_qa_screenshot_window` (in-app `captureFrame`;
+   the window is never raised or focused).
 5. Send `MEDIA:<absolute_png_path>` with minimal commentary.
 6. Record the MCP wrapper/schema mismatch as a tool gap; do not coordinate-click.
 

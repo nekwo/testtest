@@ -16,5 +16,5 @@ Use this reference when Stage C MCP work is being routed through Kanban, especia
 2. Use verb-explicit controls; do not normalize ambiguous IDs such as selector controls named like open actions.
 3. Run targeted Flutter/MCP tests once after implementation.
 4. Capture screenshot once for user-facing evidence; retry once if needed.
-5. If semantic state passes but screenshot helper fails repeatedly, create a helper bug/process note and let QA own visual acceptance.
+5. If semantic state passes but the in-app capture is refused repeatedly, record the named refusal and let QA own visual acceptance.
 6. Hand off to QA with exact commands, exit codes, state fields, and artifact paths so compaction does not trigger wasteful reruns.

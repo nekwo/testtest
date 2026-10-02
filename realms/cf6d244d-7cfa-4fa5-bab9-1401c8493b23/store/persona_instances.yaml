@@ -8,10 +8,14 @@ instances:
     spawned_by: operator
     workspace_id: ws_testv4_afb811
   personainst_dev_agent_8b319ebf:
+    api_mode: codex_responses
     display_name: Launcher Dev Agent
     id: personainst_dev_agent_8b319ebf
     mode: chat
+    model: gpt-6-luna-900k
+    model_override_issued_at: '2026-10-02T02:15:17.003966Z'
     persona_id: dev
+    provider: openai-codex
     realm_id: cf6d244d-7cfa-4fa5-bab9-1401c8493b23
     spawned_by: operator
     workspace_id: ws_testv4_afb811

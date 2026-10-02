@@ -28,10 +28,11 @@ When screenshot QA is unavailable, classify the reason precisely:
   `eternia-staging/stagec-smoke-credentials`, not because the screenshot MCP lane or the
   Stage C credentials were absent. Verify with redaction-safe `kubectl auth can-i ...` and
   secret-name/key-name checks before declaring credentials missing.
-- MCP state succeeds but the screenshot is blank: visual/capture blocker; does not count as
-  screenshot proof.
+- MCP state succeeds but the capture is refused (`capture_blank_frame`,
+  `capture_low_information_frame`, `capture_frame_failed`): visual/capture blocker; does not
+  count as screenshot proof. Never foreground or raise the window to retry.
 - Page-local semantic controls missing/stale: MCP schema/session freshness blocker; rebuild
-  or reload, or use the bounded helper — but do not coordinate-click as proof.
+  or reload — but do not coordinate-click as proof.
 - The debug Launcher binary is stale or locked: kill the QA `eternia_launcher.exe`, rebuild
   the Windows debug/marionette target, relaunch through MCP, then capture a fresh PNG.
   Relaunching the app alone is not the same as completed screenshot QA unless a screenshot
@@ -41,8 +42,9 @@ When screenshot QA is unavailable, classify the reason precisely:
 
 For user-facing Launcher UI changes, collect at least one real PNG when available:
 
-1. Open the app through MCP with `credential_profile: stagec-smoke` and
-   `browser_login: true`.
+1. Open the app through MCP. If the surface needs a signed-in session, pass
+   `dev_login: true` (QA builds), or `browser_login: true` with
+   `credential_profile: stagec-smoke` when real staging credentials are the point.
 2. Navigate to the relevant shell surface.
 3. Drive semantic controls if exposed; otherwise record the semantic-control gap.
 4. Capture with `mcp_launcher_qa_screenshot_window`.

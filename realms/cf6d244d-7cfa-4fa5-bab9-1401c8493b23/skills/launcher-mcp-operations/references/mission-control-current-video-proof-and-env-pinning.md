@@ -1,41 +1,37 @@
-# Current video proof and env pinning
+# Current proof artifacts and env pinning
 
-> **Refresh note (2026-08-28):** mission-era acceptance ("CLI open-task counts match
-> active/blocked mission cards") is removed — that lane no longer exists. The
-> stale-MP4 recovery and key-frame rule are the durable content; compare against live
-> surfaces instead: roster, chat transcript, board, office scene, agent console.
+> **Rewritten 2026-10-02.** The video recipe this note carried — maximize the window, then
+> FFmpeg `gdigrab` it by title — is retired under owner ruling
+> OR-2026-10-02-qa-never-covers-the-screen: a window-title grab records whatever is on top
+> of that screen region, so it only works with the QA Launcher over the owner's work. There
+> is no in-app video lane yet. The stale-artifact rule and env pinning are the durable
+> content.
 
 ## Trigger
 
-Use this when the operator asks for Launcher video/screenshot proof, or when a video
-artifact does not show the same state as the current Launcher screenshot.
+Use this when the operator asks for Launcher visual proof, or when an artifact does not
+show the same state as the current Launcher.
 
-## Stale video artifacts are not proof
+## Stale artifacts are not proof
 
-A previously recorded MP4 can be valid media but invalid proof if it predates the current
-fix/state. If the operator says the screenshot shows the right UI but the video does not,
-assume the MP4 is stale until proven otherwise. Do not defend or resend the old file.
+A previously captured PNG or MP4 can be valid media but invalid proof if it predates the
+current fix/state. If the operator says one artifact shows the right UI but another does
+not, assume the older one is stale until proven otherwise. Do not defend or resend it.
 
 Correct recovery:
 
-1. Bring the Launcher window foreground and maximize/fullscreen it.
-2. Record a fresh bounded MP4 of the exact Launcher window title, not the desktop:
+1. Bring the Launcher to the claimed state through semantic controls, and read the state
+   back.
+2. Capture a fresh in-app frame (`screenshot_window`); the window is never raised.
+3. Verify the new PNG shows the claimed state before sending it.
 
-   ```bash
-   ffmpeg -y -f gdigrab -framerate 30 \
-     -i title='Eternia Launcher (stagec-smoke)' \
-     -t 20 -c:v libx264 -preset veryfast -pix_fmt yuv420p <out>.mp4
-   ```
+## Motion and timing defects
 
-3. Sample a key frame from the new MP4:
-
-   ```bash
-   ffmpeg -y -ss 00:00:02 -i <out>.mp4 -frames:v 1 <keyframe>.png
-   ```
-
-4. Verify the key frame, not the MP4 by assumption.
-5. Send the new MP4 only after `ffprobe` confirms duration/size **and** the key frame
-   shows the claimed UI state.
+When the defect depends on motion, timing, transitions or flicker, there is no compliant
+recording lane today. Do not record the desktop and do not foreground the window to make a
+recording work. Capture an in-app frame sequence (several `screenshot_window` calls, each
+paired with its state readback) and say plainly that video proof was not taken because the
+QA lane has no in-app recorder.
 
 ## Env-pinned Launcher QA Smoke proof
 
@@ -50,19 +46,17 @@ Required safe envelope signals for pinned proof:
 - `navigation_state.selected_tab: <requested tab>`
 
 The MCP path supports `hermes_profile`, `harness_runtime_root`, and `hermes_home`, and the
-Stage C MCP launch manager forwards those to `Start-StageCDirectExe.ps1` as
-`-HermesProfile`, `-HarnessRuntimeRoot`, and `-HermesHome`.
+Stage C MCP launch manager forwards them to its internal launch helper.
 
 Pinned requests must refuse unpinned live disk sessions with a bounded
-`app_env_pin_mismatch` instead of silently attaching to a stale Launcher that may show
-an empty or foreign runtime's state.
+`app_env_pin_mismatch` instead of silently attaching to a stale Launcher that may show an
+empty or foreign runtime's state.
 
 ## Acceptance pattern
 
-A valid video proof has all of:
+Valid visual proof has all of:
 
-- a current fullscreen Launcher window capture;
+- an in-app frame captured after the fix/state change, not reused from an earlier smoke;
 - the visible Launcher surface matching the CLI/Harness state it claims (roster rows, chat
   transcript, board cards, office scene, agent console);
-- a key-frame PNG showing the same state claimed for the MP4;
-- an MP4 freshly recorded after the fix/state change, not reused from an earlier smoke.
+- env-pinned launch metadata in the envelope when parity is the claim.
