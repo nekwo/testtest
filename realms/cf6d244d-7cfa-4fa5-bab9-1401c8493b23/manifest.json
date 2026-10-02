@@ -6,9 +6,9 @@
       "path": "skills/launcher-mcp-operations/SKILL.md"
     },
     {
-      "destination": "fullscreen-screenshot-and-video-evidence-policy.md",
+      "destination": "in-app-capture-and-evidence-policy.md",
       "kind": "skill",
-      "path": "skills/launcher-mcp-operations/references/fullscreen-screenshot-and-video-evidence-policy.md"
+      "path": "skills/launcher-mcp-operations/references/in-app-capture-and-evidence-policy.md"
     },
     {
       "destination": "library-mcp-semantic-action-pitfall.md",
@@ -76,11 +76,6 @@
       "path": "skills/launcher-mcp-operations/references/mission-control-terminal-screenshot-white-render.md"
     },
     {
-      "destination": "mission-control-window-title-video-capture.md",
-      "kind": "skill",
-      "path": "skills/launcher-mcp-operations/references/mission-control-window-title-video-capture.md"
-    },
-    {
       "destination": "posts-algorithm-controls-visual-proof.md",
       "kind": "skill",
       "path": "skills/launcher-mcp-operations/references/posts-algorithm-controls-visual-proof.md"
@@ -109,16 +104,6 @@
       "destination": "stagec-library-visual-semantic-parity.md",
       "kind": "skill",
       "path": "skills/launcher-mcp-operations/references/stagec-library-visual-semantic-parity.md"
-    },
-    {
-      "destination": "stagec-marionette-internal-screenshot-fallback.md",
-      "kind": "skill",
-      "path": "skills/launcher-mcp-operations/references/stagec-marionette-internal-screenshot-fallback.md"
-    },
-    {
-      "destination": "stagec-mcp-helper-boundary-current-window-screenshot.md",
-      "kind": "skill",
-      "path": "skills/launcher-mcp-operations/references/stagec-mcp-helper-boundary-current-window-screenshot.md"
     },
     {
       "destination": "stagec-mcp-kanban-efficiency.md",
@@ -211,7 +196,7 @@
       "path": "store/workspaces/ws_testv4_afb811.json"
     }
   ],
-  "generated_at": "2026-09-28T18:13:45.619053-04:00",
+  "generated_at": "2026-10-02T15:59:43.616242-04:00",
   "kind": "realm_sync_manifest",
   "realm_id": "cf6d244d-7cfa-4fa5-bab9-1401c8493b23",
   "schema_version": 1,

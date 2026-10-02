@@ -33,8 +33,8 @@ as the CLI proof path. When using the Stage C direct-EXE helper, pin the child
 environment explicitly:
 
 - `HERMES_PROFILE=alice`
-- `HERMES_AGENT_RUNTIME_ROOT=X:\Eternia\.hermes\agent-runtime`
-- `HERMES_HOME=X:\Eternia\.hermes` when needed by the active profile/runtime
+- `HERMES_AGENT_RUNTIME_ROOT=$HERMES_HOME/agent-runtime`
+- `HERMES_HOME=$HERMES_HOME` when needed by the active profile/runtime
 
 `Start-StageCDirectExe.ps1` supports optional parameters for this lane:
 

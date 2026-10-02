@@ -4,7 +4,7 @@ Use this when validating Launcher Library MCP item selection, carousel focus, sc
 
 ## Trigger evidence
 
-A direct Alice MCP session opened Library and successfully called `click_button` on several `library.item.*` controls. `get_buttons(scope=library.item)` later reported `selected=true` for `The First Descendant` (`library.item.external:steam:2074920`), but the real PrintWindow screenshot still visually showed the focused/centered Library card as `OVR Toolkit`.
+A direct Alice MCP session opened Library and successfully called `click_button` on several `library.item.*` controls. `get_buttons(scope=library.item)` later reported `selected=true` for `The First Descendant` (`library.item.external:steam:2074920`), but the real screenshot still visually showed the focused/centered Library card as `OVR Toolkit`.
 
 Observed scroll mismatch from the same session:
 
@@ -24,7 +24,7 @@ For Library item selection/scroll claims, require all of:
 2. Enumerate Library items with `get_buttons(scope=library.item)`.
 3. Click/select the intended item with `click_button` by stable `library.item.*` id.
 4. Read back semantic state with `get_buttons` or a widget state hook.
-5. Capture a real PrintWindow screenshot and visually confirm the focused/centered card changed to the intended item.
+5. Capture an in-app screenshot (`screenshot_window`) and visually confirm the focused/centered card changed to the intended item.
 6. If opening details is part of the claim, explicitly click `library.action.open_details` and verify `library.details` mounted/details-open state; do not equate selection with details-open.
 7. Redaction-scan artifacts before reporting PASS.
 

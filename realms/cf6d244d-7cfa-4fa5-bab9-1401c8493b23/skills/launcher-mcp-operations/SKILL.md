@@ -1,7 +1,7 @@
 ---
 name: launcher-mcp-operations
-description: "General-purpose Eternia Launcher MCP operation skill: drive, verify, and capture the Launcher through the launcher_qa MCP surface — launch/attach and env pinning, semantic controls and navigation, forms/scroll/tabs, library and board lanes, screenshots and video, credential preflight, and evidence delivery."
-version: 2.0.0
+description: "General-purpose Eternia Launcher MCP operation skill: drive, verify, and capture the Launcher through the launcher_qa MCP surface — sign-in first (dev_login), launch/attach and env pinning, semantic controls and navigation, forms/scroll/tabs, library and board lanes, in-app screenshots, credential preflight, and evidence delivery."
+version: 2.1.0
 metadata:
   hermes:
     surfaces: [mission_chat]
@@ -12,45 +12,77 @@ metadata:
 # Launcher MCP Operations
 
 How to operate the Eternia Launcher end-to-end through the `launcher_qa` MCP surface:
-launch or attach it, navigate it, click its semantic controls, read its state back, and
-capture screenshots and video as evidence. Screenshots are one lane in here, not the whole
-skill.
+launch or attach it, sign it in, navigate it, click its semantic controls, read its state
+back, and capture its own rendered frame as evidence. Screenshots are one lane in here, not
+the whole skill.
+
+> **Source of truth.** This package is authored in the EterniaLauncher repository at
+> `agent_prompts/skills/launcher-mcp-operations/` and reaches
+> `$HERMES_HOME/shared/skills/launcher-mcp-operations/` by promotion and realm publish
+> (see `agent_prompts/skills/README.md` there). An edit made only in the live copy is overwritten
+> by the next promotion or realm pull.
 
 > **Historical-vocabulary note (2026-07-30, rewritten 2026-08-28):** the harness
 > goal/task mission lane was removed
-> (`X:/Eternia/hermes-agent/docs/agent-runtime-harness/archive/2026-08-22-pre-consolidation/16-mission-lane-removal.md`).
+> (`hermes-agent/docs/agent-runtime-harness/archive/2026-08-22-pre-consolidation/16-mission-lane-removal.md`).
 > There are no goals, missions, runs, proof gates, task ids, `run-until-settled`, or
 > Active Missions counts any more, and the projector/read-model is retired. Chat is the
-> only lane. This package was rewritten on 2026-08-28 to strip mission-era prescriptions;
-> the capture, parity, and env-pinning **principles** survive, applied to the live
-> surfaces — roster, chat transcript, board, office scene, agent console. If a reference
-> file still smells of the old vocabulary, read its principle and ignore its nouns.
+> only lane. If a reference file still smells of the old vocabulary, read its principle
+> and ignore its nouns.
+
+---
+
+## 0. First step: sign in before any signed-in tab
+
+**Call `mcp_launcher_qa_dev_login` before you open any surface that needs a signed-in
+session** — or pass `dev_login: true` to `mcp_launcher_qa_open_app_tab`, which does the
+same inside the call. A `stagec-smoke` Launcher is a GUEST until you do.
+
+- Why first: on 2026-10-02 an agent opened News on a signed-out QA Launcher; the call
+  rebuilt and launched for 220 s and then refused `auth_required`. One `dev_login: true`
+  on that call would have made it one call that succeeded.
+- `dev_login` signs in as the dev player in ~0.15 s, with no browser and no access token.
+  It exists only in QA builds (debug marionette and the fast QA lane); elsewhere it
+  answers `dev_login_unavailable`, never a false ok.
+- What needs it: the app says, not this skill. `open_app_tab` asks the app — the
+  `shell.nav.<tab>` control reports `disabled_reason: needs_account` for a tab the app
+  gates on an account (today: `studio`). Every other tab opens for a guest in its
+  signed-out shape, with a warning in the envelope. If you want the signed-in content of
+  any surface (entitlements, account, Studio), sign in first.
+- `dev_login` signs the shell in but mints no token, so backend-backed DATA still reads
+  "Session expired". When real backend data is the point, use the staging credential flow
+  instead (`browser_login: true`, section 7).
+- `dev_login` resets the shell to Home on the signed-in edge. Sign in, THEN navigate.
 
 ---
 
 ## 1. Core rules and the two lanes
 
+**The QA Launcher never covers the owner's screen** (owner ruling
+OR-2026-10-02-qa-never-covers-the-screen). It does not open on top of other windows, take
+focus, restore or foreground itself, or open maximized over the owner's work. Every
+screenshot is rendered INSIDE the app from its own frame (the `captureFrame` verb). Never
+foreground, focus, restore or maximize the window, and never take a desktop capture —
+not PrintWindow, not `CopyFromScreen`, not a Snipping Tool grab, not an FFmpeg window
+grab. A capture the app cannot render fails with a named reason; report it.
+
 **Never kill the operator's live Launcher session to take a screenshot or to unblock a
 build.** (Live incident 2026-07-25: `open_app_tab(reap_stale=true)` name-reaped the
 operator's running Launcher mid-conversation, and the Hermes serve child executing the
-requesting agent's own turn died with it. The reap is manifest-scoped now — it can only
-touch PIDs recorded in QA launch manifests — but the workflow rule stands.)
+requesting agent's own turn died with it.) Leave `reap_stale` false; self-heal already
+ends a broken QA instance by pid.
 
 Choose the lane by what the ask actually needs.
 
-**Lane A — pure capture.** "Screenshot the current app / what's on screen now."
-Message the existing QA persona/session through `hermes harness mission-chat message` and
-have that admitted QA turn call `mcp_launcher_qa_screenshot_window` directly. That tool is
-a pure capture primitive — no launch, no attach, no login, no reap — and it captures the
-operator's live window by title prefix (`Eternia Launcher` matches both the normal title
-and the `(stagec-smoke)` one). Do not substitute a generic MCP client or a helper process,
-and do not ask QA to run `open_app_tab` / `launch_or_attach` first: those controls cannot
-attach to a user-launched Launcher and will spawn a second instance.
+**Lane A — pure capture.** "Screenshot the QA Launcher as it is now." Have the admitted QA
+turn call `mcp_launcher_qa_screenshot_window` directly. It is a pure capture primitive — no
+launch, no login, no reap — that renders the attached QA session's current frame. It
+cannot capture a user-launched Launcher (that binary has no QA control surface) or any
+other window (`capture_foreign_window_refused`).
 
-**Lane B — driven proof.** Navigate, click, log in, fill a form, verify state, then
-capture. This needs a QA-profile (`stagec-smoke`) marionette launch — a separate logged-in
-identity, running side by side with any user session. Default `reap_stale:false`; pass
-`reap_stale:true` only to clear stale QA corpses from earlier QA launches.
+**Lane B — driven proof.** Sign in, navigate, click, fill a form, verify state, then
+capture. This needs a QA-profile (`stagec-smoke`) launch running side by side with any
+user session.
 
 Standing rules that apply to both lanes:
 
@@ -61,15 +93,13 @@ Standing rules that apply to both lanes:
   and the pixels disagree, the pixels win and the disagreement is a parity bug, not a PASS.
 - Do not accept `click_button` alone as visual proof. Verify with a state readback, then
   capture.
-- Fullscreen/maximize the Launcher before any screenshot or recording.
-- PNG (or a sampled key frame) for model/vision analysis; MP4 for humans, unless the defect
-  is motion/timing.
+- PNG for model/vision analysis and for human proof. There is no in-app video lane; see
+  section 6.
 - When a card or the operator gives you a PNG path as evidence, treat the path as the
   handle. Do not read or base64-load the bytes unless visual inspection is actually
   required.
-- Do not start by filesystem-searching helper scripts or hand-driving unrelated PS1
-  flows. Helpers are bounded MCP invocation wrappers, used only when the first-class
-  in-chat tools are missing or stale.
+- The agent path is MCP-only. Do not filesystem-search helper scripts or drive PowerShell
+  QA scripts; those are operator/CI tools.
 
 ---
 
@@ -95,59 +125,25 @@ not the core `hermes -p launcher-qa chat` entry point:
    receipt in the next step is authoritative for tool availability.
 4. Send a no-tool identity/schema turn through `hermes harness mission-chat message` with
    explicit `--persona qa`, `--persona-instance-id`, `--session-id`, and a unique
-   `--client-message-id`. Require `profile_timing.mcp_admitted_servers=1`, the full Launcher
-   QA tool set loaded (26 tools at last count), zero calls spent, and `run_ids: []`.
+   `--client-message-id`. Require `profile_timing.mcp_admitted_servers=1`, the Launcher QA
+   tool set loaded, zero calls spent, and `run_ids: []`.
 5. Send one non-mutating semantic MCP request through the same chat. Require a real chat
    tool receipt plus `mcp_calls_spent=1` before asking for navigation or pixels.
-6. Only then request the bounded QA action. For screenshots, report only an actual PNG and
+6. Only then request the bounded QA action — and if it touches a signed-in surface, the
+   first call is `dev_login` (section 0). For screenshots, report only an actual PNG and
    reproduce its `MEDIA:<absolute path>` line verbatim.
 
 **The chat lane does admit MCP.** Do not repeat the old claim that Mission Control chat
 cannot admit MCP or that Stage C cannot be driven from a chat turn. That gap was
-root-caused and fixed 2026-08-26: the serve venv was missing the `mcp` pip extra. The
-direct route works.
+root-caused and fixed 2026-08-26: the serve venv was missing the `mcp` pip extra.
 
 Do not misread the static `persona-instance detail` preview either. It renders the
 `harness` preview lane and may say `mcp_not_registered_on_lane`; the actual `mission-chat
 message` turn performs MCP admission/discovery.
 
-Verified live 2026-07-28 using existing `personainst_qa` and session
-`persona_chat_personainst_qa_469e5554a197`: identity turn
-`stagec-direct-route-identity-20260728-1633` admitted one server and loaded 26 tools; the
-semantic turn `stagec-direct-runtime-state-20260728-1635` spent exactly one MCP call, and
-`mcp_launcher_qa_get_runtime_state` succeeded. It attached to PID 26544 via
-`direct_control`, entrypoint `lib/main_marionette.dart`, Launcher credential profile
-`stagec-smoke`, Harness root `.hermes/agent-runtime` resolved from `env`. The Hermes agent
-profile (`launcher-qa`) and the Launcher credential profile (`stagec-smoke`) are distinct
-and both must be reported accurately.
-
-### Bounded MCP-helper fallback
-
-Use this only when the existing QA chat's MCP admission or loaded wrapper schema is
-unavailable/stale **and** the exact gap has been recorded. It is not the default route and
-must not be used to bypass inspecting and reusing the existing QA persona/session. From
-repo root `X:\Unreal Engine\Engine\Launcher\EterniaLauncher`:
-
-```bash
-cd 'X:/Unreal Engine/Engine/Launcher/EterniaLauncher'
-
-powershell.exe -NoProfile -ExecutionPolicy Bypass \
-  -File docs/stages/qa-reboot/scripts/Invoke-LauncherQaMcpTool.ps1 \
-  -Tool mcp_launcher_qa_open_app_tab \
-  -ArgsJson '{"tab":"library","browser_login":true,"credential_profile":"stagec-smoke","screenshot":false,"reap_stale":false}' \
-  -CallTimeoutSeconds 240
-
-powershell.exe -NoProfile -ExecutionPolicy Bypass \
-  -File docs/stages/qa-reboot/scripts/Invoke-LauncherQaMcpTool.ps1 \
-  -Tool mcp_launcher_qa_screenshot_window \
-  -ArgsJson '{"window_title_prefix":"Eternia Launcher","label":"alice_library_current","out_dir":"X:/tmp/stagec/screenshots"}' \
-  -CallTimeoutSeconds 120
-```
-
-The helper is still an MCP path — it launches and calls the Stage C MCP server with safe
-timeouts and envelopes. Do not call it "not MCP". Its one real limitation is that it starts
-a fresh server lifetime per call, so a follow-up `get_buttons`/`click_button` can return
-`app_not_attached`; that is a helper session boundary, not proof the app cannot be driven.
+If the chat's MCP admission or its loaded tool schema is unavailable or stale, record the
+exact gap (admission receipt, missing tool, schema mismatch) and stop there. Driving the
+operator's PowerShell helper scripts is not an agent fallback.
 
 ---
 
@@ -155,32 +151,39 @@ a fresh server lifetime per call, so a follow-up `get_buttons`/`click_button` ca
 
 ### `mcp_launcher_qa_open_app_tab`
 
-The composed entry point: launch or attach, authenticate, navigate, and optionally
-screenshot in one call. It owns the composed screenshot knobs (`screenshot: true` plus the
-internal-fallback behavior); `screenshot_window` does not.
+The composed entry point: launch or attach, sign in if asked, navigate, and optionally
+screenshot in one call. It owns the composed screenshot knob (`screenshot: true`);
+`screenshot_window` does not.
 
 Important args:
 
 - `tab` — requested surface, e.g. `library`, `news`, `posts`, `shop`, `downloads`, `ai`,
-  `missionControl`.
-- `browser_login: true` — allow the browser-login fallback if needed.
-- `credential_profile: stagec-smoke` — use the Stage C smoke credentials/profile.
+  `missionControl`, `studio`.
+- `dev_login: true` — sign in as the dev player inside this call when the Launcher is a
+  guest (QA builds). The default way to reach a signed-in surface.
+- `browser_login: true` with `credential_profile: stagec-smoke` — the staging
+  real-credential PKCE flow, when real backend data is the point. Exclusive with
+  `dev_login`.
 - `screenshot: false` when you intend to call the primitive screenshot tool afterward.
-- `reap_stale: false` by default — attach to a known healthy QA session when one exists.
-  Pass `true` only when a stale/broken QA launch must be cleared; the reap is
-  manifest-scoped (only PIDs in `direct_exe_*\_active\pid_*.json` QA launch manifests) and
-  never touches a user-launched Launcher.
+- `reap_stale: false` — always. Self-heal already replaces a broken QA instance by pid.
 - `hermes_profile`, `harness_runtime_root`, `hermes_home` — env pins, see below.
 
 Acceptance fields before you interact or capture:
 
 - `ok=true`
 - `app.attached=true`
-- `app.window_visible=true`
 - `app.qa_control_ready=true`
-- `auth_state.status=authenticated`
+- `auth_state.status=authenticated` when the surface needs a signed-in session; for a
+  guest, `auth_state.sign_in_required=false` and the warning say the tab opened in its
+  signed-out shape
 - `navigation_state.selected_tab=<requested tab>`
 - `navigation_state.blocking_modal_present=false`
+
+An `auth_required` refusal names the tab, the app's reason, and how long the call spent
+(`timing.elapsed_ms`, `timing.launch_or_attach_ms`). Retry with `dev_login: true`.
+
+The first call after `main` moves may rebuild the isolated QA copy (minutes, not seconds).
+That cost is paid once; sign in on that same call rather than paying it for a refusal.
 
 ### Env pinning is mandatory for parity proof
 
@@ -190,8 +193,8 @@ Acceptance fields before you interact or capture:
 `app.hermes_home_configured:true`.
 
 If the envelope comes back unpinned (`hermes_profile:null` or
-`harness_runtime_root_configured:false`), the screenshot or video is **invalid** as smoke
-proof even if navigation and auth succeeded. Rerun pinned rather than diagnosing UI state.
+`harness_runtime_root_configured:false`), the screenshot is **invalid** as smoke proof
+even if navigation and auth succeeded. Rerun pinned rather than diagnosing UI state.
 
 Then distinguish three truth states before interpreting an empty panel:
 
@@ -204,34 +207,26 @@ Then distinguish three truth states before interpreting an empty panel:
 
 If the operator's normal Launcher shows content but pinned smoke does not, compare the
 exact Harness store/root/profile for normal vs smoke first — that is usually a
-root/profile mismatch, not a mapping regression. If the helper accepts pin flags but the
-envelope still shows unpinned fields, audit the MCP launch manager/composer
-(`buildLaunchArgs`, open-tab launch composition) for missing argument forwarding before
-touching UI mapping. Post-fix, preserve the guardrail that a pinned request refuses an
-unpinned live disk session with a bounded `app_env_pin_mismatch` instead of silently
-attaching. See `references/mission-control-launcher-qa-smoke-env-parity.md`.
+root/profile mismatch, not a mapping regression. A pinned request refuses an unpinned live
+disk session with a bounded `app_env_pin_mismatch` instead of silently attaching. See
+`references/mission-control-launcher-qa-smoke-env-parity.md`.
 
 ### Session persistence and freshness
 
-- The QA window is **persistent** (2026-07-25 job-escape): it survives MCP server exits, and
+- The QA window is **persistent**: it survives MCP server exits, and
   `launch_or_attach`/`open_app_tab` re-attach to it across calls (`attached_from_disk:true`,
   same PID). Do not treat a still-running QA window from a previous call as stale — attach
-  to it. If its runtime gate fails, the tools self-heal (reap that instance and relaunch)
-  automatically; `self_heal_relaunch:true` in the envelope diagnostics says that happened.
-- Stage C rejects a regular `flutter build windows --debug` binary with
+  to it. If its runtime gate fails, the tools self-heal (end that instance by pid and
+  relaunch); `self_heal_relaunch:true` in the envelope diagnostics says that happened.
+- Stage C rejects a regular debug binary with
   `launch_wrong_debug_target_missing_marionette`. That is a build-target guardrail, not a
-  product bug. Rebuild the QA target:
-  `flutter build windows --debug --target lib/main_marionette.dart`.
-- If that rebuild fails because `WebView2Loader.dll` is locked by the operator's normal
-  `eternia_launcher`, **do not close or kill it automatically.** Record the exact PID and
-  locked output as the freshness blocker and ask the operator to close it or authorize an
-  isolated QA build output. (Verified 2026-07-28: PID 36404 held the lock; the run produced
-  only a failed log, no envelope and no PNG.)
-- Rebuild the canonical `tool/stagec_qa_mcp_server/build/stagec_qa_mcp_server.exe` after
-  source or tool-catalog changes, or Hermes MCP discovery will not list new tools.
-- In-chat MCP tools can be stale if they were loaded before an MCP server rebuild. If a
-  fresh helper sees a new tool but the chat namespace does not, report a host/session reload
-  need and continue with the bounded helper.
+  product bug; `launch_or_attach` builds its isolated QA copy when its own copy is stale.
+- If a build fails because a file is locked by the operator's normal `eternia_launcher`,
+  **do not close or kill it.** Record the exact PID and locked output as the freshness
+  blocker and ask the operator.
+- In-chat MCP tools can be stale if they were loaded before an MCP server rebuild. If the
+  chat namespace lacks a tool or argument this skill names, report a host/session reload
+  need.
 
 ---
 
@@ -384,8 +379,8 @@ artifact, the bounded direct QA REST route is an acceptable navigation fallback:
 - body `{ "tab": "missionControl" }`
 
 Verify the navigation state afterwards, still use `mcp_launcher_qa_screenshot_window` for
-the actual pixels, and record the wrapper/schema mismatch as a tool gap. Try the bounded
-MCP helper/open-tab path first — a freshly rebuilt helper may accept a tab value that the
+the actual pixels, and record the wrapper/schema mismatch as a tool gap. Try
+`open_app_tab` first — a freshly reloaded tool schema may accept a tab value that the
 stale chat wrapper rejects. Never coordinate-click instead. See
 `references/mission-control-direct-tab-and-delivery.md`.
 
@@ -393,17 +388,24 @@ stale chat wrapper rejects. Never coordinate-click instead. See
 
 ## 5. Screenshot capture and delivery
 
+### The in-app capture lane
+
+Every screenshot is the app's own rendered frame. `mcp_launcher_qa_screenshot_window`,
+`mcp_launcher_qa_capture_screenshot` and `open_app_tab(screenshot: true)` call the
+`captureFrame` verb: the root layer tree is rasterized offscreen at the window's device
+pixel ratio and written to a PNG. The window is never restored, raised, focused or
+maximized; it may sit behind other windows, the display may be asleep and the session
+locked. There is no desktop fallback, by ruling.
+
 ### `mcp_launcher_qa_screenshot_window`
 
-A primitive, not an orchestrator. It screenshots whatever the current window is showing.
-Use it after navigation/click/login is already done. It has its own small arg set — the
-composed screenshot knobs belong to `open_app_tab`, not here.
+A primitive, not an orchestrator. It renders whatever the attached session is showing. Use
+it after sign-in/navigation/clicks are done. It has its own small arg set — the composed
+knobs belong to `open_app_tab`.
 
 ```json
 {
-  "window_title_prefix": "Eternia Launcher",
-  "label": "alice_library_current",
-  "out_dir": "X:/tmp/stagec/screenshots"
+  "label": "alice_library_current"
 }
 ```
 
@@ -411,31 +413,23 @@ Acceptance fields:
 
 - `ok=true`
 - a stable top-level `image_path`
-- `capture_method` / `capture_method_used` = `printwindow`
-- a non-trivial `byte_count`
-- `bounds.width` / `bounds.height`
+- method `in_app_frame`
+- physical `width` / `height` and `device_pixel_ratio`
+- the content gate's verdict (`blank_pixel_ratio`, `unique_color_count`) in
+  `capture_response_safe`
 - `redaction.safe=true`
 
-If `ok=false` with `helper_window_not_found`, the app/window was not visible or not
-launched. Go back to `open_app_tab`/launch — do not debug the screenshot tool first.
-
-Validated live 2026-05-18: `open_app_tab(library, browser_login=true,
-credential_profile=stagec-smoke, screenshot=false)` returned `ok=true`,
-`auth_state.status=authenticated`, `navigation_state.selected_tab=library`,
-`window_visible=true`, `qa_control_ready=true`; then `screenshot_window` returned
-`capture_method=printwindow`,
-`image_path=X:\tmp\stagec\screenshots\alice_library_current_20260518103646064.png`,
-`byte_count=1076666`, `1266x793`, redaction safe.
+`window_title_prefix` is accepted only when it names the Launcher, and is answered with
+the session's own frame; any other window is `capture_foreign_window_refused`.
 
 ### Capture sequence
 
-1. Launch/attach with MCP (pinned).
-2. Log in with MCP if needed.
+1. Launch/attach with MCP (pinned when parity is the claim).
+2. Sign in with `dev_login` if the surface needs a signed-in session (section 0).
 3. Navigate to the requested tab/page with MCP.
-4. Scroll semantically to the exact requested panel.
-5. Foreground and maximize/fullscreen the window.
-6. Capture the current visible window with the primitive screenshot tool.
-7. Deliver `MEDIA:<absolute-path>` unless analysis was requested.
+4. Scroll semantically to the exact requested panel and read the state back.
+5. Capture with the primitive screenshot tool.
+6. Deliver `MEDIA:<absolute-path>` unless analysis was requested.
 
 ### Exact panel or report the gap
 
@@ -453,32 +447,26 @@ because the current MCP semantic surface does not expose a direct route/control 
 
 See `references/mission-control-exact-panel-screenshot-fallback.md`.
 
-### Blank and white captures
+### Refused and blank captures
 
-Never send blank proof. Classify it instead:
+Never send blank proof. A blank frame comes back as a named refusal; classify it:
 
-- `low_information_capture` can be **honest**. The `stagec-smoke` account follows no
-  communities, so the Posts **For You** feed is a genuinely near-empty dark page and the
-  gate correctly refuses it (~95% blank pixels on a real render). For Posts proof, navigate
-  to **Explore** (which has content) or use the internal Flutter fallback and label it.
-  Verified live 2026-07-25.
-- `helper_blank_capture` after the semantic gates pass (authenticated, expected
-  `selected_tab`, QA control ready, no blocking modal) → use the Marionette internal Flutter
-  screenshot fallback: extract the VM service URI from the child stdout log, call
-  `ext.flutter.marionette.takeScreenshots` as a **direct extension path**, decode the base64
-  PNG, sanity-check it, and label it as internal Flutter screenshot fallback proof. Do not
-  use the `callServiceExtension?...method=...` shape — it can report `Method not found` even
-  while the direct path works. Never let the VM service URI (it carries a local auth token)
-  into envelopes, chat output, or logs. See
-  `references/stagec-marionette-internal-screenshot-fallback.md`.
-- PrintWindow blank but a foreground capture shows the UI → capture-method compatibility.
-- Both blank → app rendering/bootstrap/window-surface failure. Switch to a known-good tab
-  once; if still blank, classify it as a high-severity visual QA blocker. See
+- `capture_low_information_frame` can be **honest**. The `stagec-smoke` account follows no
+  communities, so the Posts **For You** feed is a genuinely near-empty page. For Posts
+  proof, navigate to **Explore** (which has content).
+- `capture_blank_frame` after the semantic gates pass (expected `selected_tab`, QA control
+  ready, no blocking modal) → switch to a known-good tab once; if still refused, classify
+  it as a high-severity visual QA blocker. See
   `references/stagec-blank-visual-after-semantic-nav.md`.
-- Uniform white pixels while semantics are healthy → report `live Windows pixel proof
-  blocked: white render surface`. A widget/golden fallback is clearly-labeled partial
-  evidence only, and block-glyph GoogleFonts text is layout-only, not readable proof. See
+- `capture_frame_failed` → the app could not render its own frame; report the `reason`.
+- `capture_in_app_unsupported` → the binary predates the lane; it needs a rebuild.
+- Uniform white pixels in an accepted frame while semantics are healthy → report
+  `live pixel proof blocked: white render surface`. A widget/golden fallback is
+  clearly-labeled partial evidence only. See
   `references/mission-control-terminal-screenshot-white-render.md`.
+
+None of these is answered by raising the window, a desktop capture, or the VM-service
+`takeScreenshots` path — all retired.
 
 ### Delivery
 
@@ -486,7 +474,7 @@ When the operator says "send me it", respond with the native media attachment an
 text:
 
 ```text
-MEDIA:X:\\\\tmp\\\\stagec\\\\screenshots\\\\alice_library_current_20260518103646064.png
+MEDIA:<absolute path from image_path>
 ```
 
 A live PNG path is enough to answer "show me how it looks". Optional golden tests and
@@ -509,66 +497,37 @@ only when a fresh PNG path is captured and reported, or the exact blocker is nam
 
 ---
 
-## 6. Video capture
+## 6. Video
 
-Video is **human proof by default**. Do not send full videos to model vision unless the
-defect depends on motion, timing, transitions, loading, or flicker; if the question is
-static, sample one key frame or capture a PNG instead.
+**There is no compliant video lane today.** A window-title FFmpeg grab records whatever is
+on top of that screen region, so it only works with the QA Launcher over the owner's work —
+which the ruling forbids. Do not record the desktop, and do not raise the window to make a
+recording work.
 
-**Preflight.** Before starting FFmpeg, verify the Launcher is already on the intended page
-and the QA control path is ready. If an env-pinned launch reports `window_visible=true` but
-`qa_control_ready=false`, do **not** start recording and do not present a partial attempt.
-Diagnose the QA-control bind/readiness path or relaunch through the bounded MCP/open-tab
-workflow, then record only once navigation and parity can be verified.
+When the defect depends on motion, timing, transitions, loading or flicker, capture an
+in-app frame sequence — several `screenshot_window` calls, each paired with the state
+readback that frame claims — and say plainly that video proof was not taken because the QA
+lane has no in-app recorder.
 
-**Record the window, not the desktop.** Desktop capture will happily record a browser that
-owns the foreground while the Launcher sits behind it.
-
-```bash
-ffmpeg -y -f gdigrab -framerate 15 \
-  -i title='Eternia Launcher (stagec-smoke)' \
-  -t 50 -c:v libx264 -preset ultrafast -pix_fmt yuv420p \
-  '/c/Users/beast/AppData/Local/EterniaLauncher/stagec-smoke-local/videos/<label>_<timestamp>.mp4'
-```
-
-**Bound the duration; never force-kill.** Pass `-t <seconds>` up front so FFmpeg exits
-normally and writes the container metadata. A killed FFmpeg leaves an invalid MP4 that
-fails with `moov atom not found`. Verify before delivery:
-
-```bash
-ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1:nokey=0 '<video>.mp4'
-```
-
-**Sequence.** Maximize → 3-5s sample capture → extract one frame → inspect that frame only,
-to confirm you are recording the Launcher on the right surface → bounded production capture
-→ `ffprobe` → sample a key frame → deliver.
-
-```text
-MEDIA:C:\\\\Users\\\\beast\\\\AppData\\\\Local\\\\EterniaLauncher\\\\stagec-smoke-local\\\\videos\\\\launcher_<label>_<timestamp>.mp4
-```
-
-**Stale MP4s are not proof.** If the operator says the screenshot is right but the video is
-not, do not defend or resend the old file. Treat it as stale, re-record the current
-fullscreen window, sample a key frame, verify that frame shows the claimed state, then send
-the fresh MP4. Delete failed desktop-capture attempts that recorded unrelated apps. See
-`references/mission-control-window-title-video-capture.md` and
-`references/mission-control-current-video-proof-and-env-pinning.md`.
+**Stale artifacts are not proof.** An MP4 or PNG captured before the current fix/state is
+invalid proof even if it is valid media. Re-capture after the change; never defend or
+resend the old file. See `references/mission-control-current-video-proof-and-env-pinning.md`.
 
 **Artifacts must show the claimed state.** If a live chat turn, board change, or roster
 change drove the claim, the pixels must show the corresponding panel state. CLI/Harness
 success without matching visible evidence is not UI proof — report the Launcher/read-model
-mismatch as a high-severity regression instead of presenting the artifact as success. If a
-live interaction ran during capture, include only the compact final state or blocker unless
-logs were requested.
+mismatch as a high-severity regression instead of presenting the artifact as success.
 
 ---
 
 ## 7. Credential preflight and recovery
 
-Reuse the existing Stage C smoke credential path: `credential_profile: stagec-smoke`,
-`browser_login: true`. Do not invent a new credential system and do not ask the operator
-for credentials unless the existing Stage C smoke profile fails. The Launcher should
-display only redaction-safe auth state — `authenticated` / `login_required` / `failed`.
+For a signed-in shell, `dev_login` (section 0) is the default and needs no credentials.
+Use the staging credential path only when real backend data is the point:
+`credential_profile: stagec-smoke`, `browser_login: true`. Do not invent a new credential
+system and do not ask the operator for credentials unless the existing Stage C smoke
+profile fails. The Launcher should display only redaction-safe auth state —
+`authenticated` / `login_required` / `failed`.
 
 On `browser_login_helper_failed` / `auth_secret_unavailable`, distinguish **credential
 contract existence** from **active runner access**. The Stage C credential path may be
@@ -591,11 +550,11 @@ kubectl -n eternia-staging get secret stagec-smoke-credentials -o name
 ```
 
 Healthy output is `local`, `yes`, `secret/stagec-smoke-credentials`, with keys `password
-username`. The kubeconfig lives at `C:\Users\beast\.kube\config` (`/c/Users/beast/.kube/config`
-from Git Bash) and resets roughly every two weeks. `Unauthorized` means a stale kube
-token/session. `x509: certificate signed by unknown authority` after a Rancher-generated
-config rewrite means the embedded CA does not match the served Rancher proxy cert; the
-pragmatic in-session fix is:
+username`. The kubeconfig lives at `%USERPROFILE%\.kube\config` (`~/.kube/config` from Git
+Bash) and resets roughly every two weeks. `Unauthorized` means a stale kube token/session.
+`x509: certificate signed by unknown authority` after a Rancher-generated config rewrite
+means the embedded CA does not match the served Rancher proxy cert; the pragmatic
+in-session fix is:
 
 ```bash
 kubectl config set-cluster local --insecure-skip-tls-verify=true
@@ -611,50 +570,39 @@ names only. See `references/stagec-smoke-kubeconfig-credential-preflight.md` and
 
 **Capture policy and delivery format**
 
-- `references/fullscreen-screenshot-and-video-evidence-policy.md` — maximize/fullscreen the
-  Launcher before screenshots and recordings; PNG/key-frame for model analysis, MP4 as human
-  proof unless motion/timing is the defect.
-- `references/snipping-tool-bmp-conversion.md` — convert Snipping Tool BMP screenshots to
-  PNG for delivery and vision/QA; JPEG only for photo-like/lossy cases explicitly requested.
+- `references/in-app-capture-and-evidence-policy.md` — the ruling, how `captureFrame`
+  works, what is never done (foreground, maximize, desktop capture), and the evidence
+  defaults.
+- `references/snipping-tool-bmp-conversion.md` — convert operator-supplied Snipping Tool
+  BMP screenshots to PNG for delivery and vision/QA.
 - `references/mission-control-screenshot-qa-lane.md` — user-facing Launcher UI changes need
   live Stage C PNG proof when available; if skipped or blocked, explicitly report `live
   Stage C screenshot QA not performed` and the reason, with a triage table for the blocker
   classes.
 - `references/mission-control-direct-tab-and-delivery.md` — when the MCP tab enum wrapper is
-  stale, use the redaction-safe QA control REST `/qa/setTab` path with an existing
-  port/nonce, capture with `screenshot_window`, deliver the PNG immediately, and never let
-  optional golden validation block a screenshot request.
+  stale, the redaction-safe QA control REST `/qa/setTab` path; deliver the PNG immediately
+  and never let optional golden validation block a screenshot request.
 - `references/mission-control-exact-panel-screenshot-fallback.md` — if MCP can launch and
   capture the shell but the exact panel is not semantically exposed, capture the nearest
   supported evidence, pair it with deterministic tests, and report the exact-panel
   limitation instead of coordinate-clicking.
 
-**Blank, white, and fallback captures**
+**Refused, blank, and white captures**
 
-- `references/stagec-blank-visual-after-semantic-nav.md` — when semantic state says mounted
-  and navigated but screenshots are blank, separate capture-method flake from a true
-  rendered-visual blocker and report visual QA as failed until pixels prove otherwise.
-- `references/stagec-marionette-internal-screenshot-fallback.md` — when Stage C gates pass
-  but Win32/PrintWindow returns blank pixels, call the live VM-service
-  `ext.flutter.marionette.takeScreenshots` direct extension path, decode the base64 PNG, and
-  label it as internal Flutter screenshot fallback proof.
+- `references/stagec-blank-visual-after-semantic-nav.md` — the named capture refusals and
+  how to classify each; a refusal is a visual blocker, never retried by raising the window.
 - `references/mission-control-terminal-screenshot-white-render.md` — semantic state can be
-  healthy while Windows pixels are a uniform white render surface; do not send blank proof,
-  classify the blocker, and treat block-glyph golden fallback as layout-only.
+  healthy while the frame is a uniform white surface; classify the blocker and treat
+  block-glyph golden fallback as layout-only.
 - `references/posts-algorithm-controls-visual-proof.md` — reject stale/empty/loading/overflow
-  screenshots, rebuild stale binaries, degrade read-only config hydration to a fallback on
-  backend HTML/500, and require the visible controls with no Flutter overflow banner before
-  attaching screenshot proof.
+  screenshots, rebuild stale binaries, and require the visible controls with no Flutter
+  overflow banner before attaching screenshot proof.
 
-**Video**
+**Stale artifacts and env pinning**
 
-- `references/mission-control-window-title-video-capture.md` — capture the Launcher by exact
-  window title with `gdigrab` so desktop capture cannot record the browser instead; bound the
-  duration, never force-kill FFmpeg, verify with `ffprobe`, sample a frame.
-- `references/mission-control-current-video-proof-and-env-pinning.md` — if a screenshot shows
-  the current state but a sent video does not, treat the MP4 as stale, re-record the exact
-  fullscreen window, verify a key frame, and require env-pinned launch metadata before
-  sending.
+- `references/mission-control-current-video-proof-and-env-pinning.md` — stale PNG/MP4
+  artifacts are not proof; motion defects get an in-app frame sequence; env-pinned launch
+  metadata is required for parity claims.
 
 **Launch, env pinning, and semantic controls**
 
@@ -663,8 +611,7 @@ names only. See `references/stagec-smoke-kubeconfig-credential-preflight.md` and
   land, and distinguish real-empty from bridge-unavailable from parity-mismatch.
 - `references/mission-control-semantic-shell-scroll-terminal-proof.md` — the `shell.scroll.*`
   contract: verify the controls, scroll by semantic button, prove `state.y` changed, preserve
-  the session for the screenshot, and rebuild `lib/main_marionette.dart` if the running
-  binary lacks the scroll observer.
+  the session for the screenshot.
 - `references/mission-control-drawer-semantic-controls-and-agent-console.md` — the
   `mission_control.drawer.*` contract: click the exact id, verify selected state, capture the
   Agent Console drawer, and the DM-stack layout/selection pitfalls from its migration.
@@ -673,15 +620,12 @@ names only. See `references/stagec-smoke-kubeconfig-credential-preflight.md` and
   account for stale loaded tool schemas, and treat "MCP click queued" as a product gap until
   a response, running state, or blocker appears.
 - `references/mission-control-persona-console-live-smoke.md` — live smoke for "can I talk to
-  Neko": rebuild the marionette if needed, open the Agent Console, verify persona selectors
-  plus `mission_control.agent_chat` controls, click `send_test_message`, and state the
-  boundary versus a full freeform message/response proof.
+  Neko": open the Agent Console, verify persona selectors plus `mission_control.agent_chat`
+  controls, click `send_test_message`, and state the boundary versus a full freeform
+  message/response proof.
 - `references/mission-control-harness-attachment-contract-and-ui-proof.md` — the structured
   image/video/file attachment-handle shape and its capability allowlist, the Launcher
   test patterns around it, and the honest non-AAA visual proof rule.
-- `references/stagec-mcp-helper-boundary-current-window-screenshot.md` — the bounded operator
-  helper is an MCP path, not a PowerShell replacement for MCP; the correct end-to-end
-  open-tab-then-screenshot sequence through it.
 - `references/stagec-mcp-kanban-efficiency.md` — lean board/kanban execution: semantic
   evidence over screenshot retry loops, reuse of prior green evidence after compaction, and
   handoffs carrying exact commands, exit codes, and artifact paths.
@@ -716,3 +660,10 @@ names only. See `references/stagec-smoke-kubeconfig-credential-preflight.md` and
 - `references/stagec-smoke-credential-source-vs-runner-access.md` — distinguish provisioned
   Stage C agent credentials from the active runner being unable to reach k8s or Credential
   Manager; report the latter as credential-access blocked, not "credentials do not exist."
+
+**Retired 2026-10-02** (owner ruling OR-2026-10-02-qa-never-covers-the-screen; removed
+from the package): `fullscreen-screenshot-and-video-evidence-policy.md`,
+`mission-control-window-title-video-capture.md`,
+`stagec-marionette-internal-screenshot-fallback.md`, and
+`stagec-mcp-helper-boundary-current-window-screenshot.md` (the operator PowerShell helper is
+not an agent path).

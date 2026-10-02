@@ -35,7 +35,8 @@ scrolling as if it were acceptable evidence.
    when relevant:
    - `profile: stagec-smoke`
    - `credential_profile: stagec-smoke`
-   - `browser_login: true` when auth may be needed
+   - `dev_login: true` when the surface needs a signed-in session (QA builds; the
+     staging `browser_login: true` flow only when real credentials are the point)
    - `hermes_profile: alice`
    - `harness_runtime_root` and `hermes_home` explicitly pinned for parity screenshots.
 2. Confirm semantic scroll affordances before scrolling:
@@ -53,8 +54,9 @@ scrolling as if it were acceptable evidence.
    reap_stale=false)` or the primitive screenshot tool as appropriate.
    - Preserve the current running session; do not relaunch after scrolling unless you are
      explicitly resetting or rebuilding.
-   - If PrintWindow blanks after semantic gates pass, accept the Marionette internal
-     Flutter screenshot fallback and label it honestly.
+   - Captures are the app's own frame (`captureFrame`). A refusal is named
+     (`capture_blank_frame`, `capture_frame_failed`, …) and there is no fallback to a
+     desktop or VM-service capture — report the refusal.
 6. For delivery, send the PNG immediately with `MEDIA:<path>` plus only a compact note
    about scroll verification if useful.
 

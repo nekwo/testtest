@@ -52,13 +52,13 @@ Do **not** print secret `.data` values or decoded username/password.
 The active Windows kubeconfig is:
 
 ```text
-C:\Users\beast\.kube\config
+%USERPROFILE%\.kube\config
 ```
 
 From Git Bash/Hermes:
 
 ```text
-/c/Users/beast/.kube/config
+~/.kube/config
 ```
 
 The operator reports this file may reset about every two weeks. When Rancher
@@ -110,6 +110,6 @@ If screenshot QA is blocked by `auth_secret_unavailable`, say precisely:
   auth / TLS preflight passes.
 
 Do not claim live Stage C screenshot QA passed until browser login and `getAuthState`
-prove authenticated state, then `screenshot_window` produces non-blank PNG evidence.
+prove authenticated state, then `screenshot_window` produces a non-blank in-app PNG.
 See `stagec-smoke-credential-source-vs-runner-access.md` for the reporting language that
 separates a provisioned credential contract from runner access.
