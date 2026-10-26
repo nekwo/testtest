@@ -3,9 +3,9 @@
 > **Rewritten 2026-10-02.** The video recipe this note carried — maximize the window, then
 > FFmpeg `gdigrab` it by title — is retired under owner ruling
 > OR-2026-10-02-qa-never-covers-the-screen: a window-title grab records whatever is on top
-> of that screen region, so it only works with the QA Launcher over the owner's work. There
-> is no in-app video lane yet. The stale-artifact rule and env pinning are the durable
-> content.
+> of that screen region, so it only works with the QA Launcher over the owner's work. Video
+> now comes from the in-app recorder (`mcp_launcher_qa_record_video`, SKILL.md §6). The
+> stale-artifact rule and env pinning are the durable content.
 
 ## Trigger
 
@@ -27,11 +27,11 @@ Correct recovery:
 
 ## Motion and timing defects
 
-When the defect depends on motion, timing, transitions or flicker, there is no compliant
-recording lane today. Do not record the desktop and do not foreground the window to make a
-recording work. Capture an in-app frame sequence (several `screenshot_window` calls, each
-paired with its state readback) and say plainly that video proof was not taken because the
-QA lane has no in-app recorder.
+When the defect depends on motion, timing, transitions or flicker, first ask whether a
+frame sequence answers it: several `screenshot_window` calls, each paired with its state
+readback. Record video only when a row or the operator explicitly asks for it, with
+`mcp_launcher_qa_record_video` (opt-in, capped, frames + manifest; SKILL.md §6). Do not
+record the desktop and do not raise the window to make a recording work.
 
 ## Env-pinned Launcher QA Smoke proof
 

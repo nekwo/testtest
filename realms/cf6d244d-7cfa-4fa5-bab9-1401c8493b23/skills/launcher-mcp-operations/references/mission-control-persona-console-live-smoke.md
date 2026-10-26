@@ -17,9 +17,9 @@ navigation state.
    - `hermes_profile: alice` or the intended profile
    - `harness_runtime_root` set to the intended Agent Runtime Harness root
    - `hermes_home` set to the intended Hermes profile home
-2. If MCP fails with `launch_wrong_debug_target_missing_marionette`, rebuild the Windows
-   debug EXE with the Marionette target, then relaunch:
-   - `flutter build windows --debug --target lib/main_marionette.dart`
+2. If the binary is stale, rebuild the Windows debug EXE (one entry, `lib/main.dart`),
+   then relaunch:
+   - `flutter build windows --debug`
    - Use the `/FS` compiler flag if MSVC PDB contention is possible.
 3. Verify the launch envelope before interacting:
    - `ok=true`

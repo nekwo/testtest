@@ -8,7 +8,8 @@ A recent Library workflow mistake came from calling the generic `scroll` tool ag
 
 ## Correct sequence
 
-1. Open/navigate with `open_app_tab` / `set_tab` and verify `navigation.selected_tab`.
+1. Open/navigate with `open_app_tab` / `call_app_function launcher.navigation.open` and verify
+   `navigation.selected_tab`.
 2. Enumerate current semantic controls with `get_buttons()` scoped to the relevant surface.
 3. Before using `scroll`, check the tool schema target list. If the desired surface is not supported, do not call it; record a missing MCP scroll-surface gap if scrolling is required.
 4. For Library:

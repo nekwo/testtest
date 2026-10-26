@@ -15,7 +15,8 @@ unsupported semantic actions just to force the exact panel into frame.
 
 ## Safe fallback pattern
 
-1. Use the strongest available semantic route first (`open_app_tab`, `set_tab`,
+1. Use the strongest available semantic route first (`open_app_tab`,
+   `call_app_function launcher.navigation.open`,
    `get_buttons`, `click_button`, `shell.scroll.*`).
 2. If the requested exact page/panel is not exposed by the MCP schema or button registry,
    do **not** claim exact-panel screenshot QA.

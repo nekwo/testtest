@@ -1,8 +1,10 @@
 # Direct-tab REST fallback and screenshot delivery
 
 > **Refresh note (2026-08-28):** the report template's "Active Missions" line is replaced —
-> that surface was removed with the goal/task mission lane. The `/qa/setTab` fallback and
-> the do-not-block-on-goldens rule are the durable content.
+> that surface was removed with the goal/task mission lane. The REST navigation fallback
+> and the do-not-block-on-goldens rule are the durable content. **2026-10-10:** the
+> `/qa/setTab` route is gone with the QA `setTab` verb (one action layer S2); the fallback
+> is `/qa/callAppFunction` running `launcher.navigation.open`.
 
 ## When this applies
 
@@ -31,9 +33,9 @@ PNG, and report the validation blocker separately if relevant.
 2. If MCP enum navigation does not accept the requested tab, use the current marionette
    session's redaction-safe QA control port/nonce files from the launch artifact and call
    the local QA REST endpoint:
-   - `POST http://127.0.0.1:<port>/qa/setTab`
+   - `POST http://127.0.0.1:<port>/qa/callAppFunction`
    - header: `X-Stagec-Qa-Nonce: <nonce>`
-   - JSON body: `{ "tab": "missionControl" }`
+   - JSON body: `{ "method": "launcher.navigation.open", "args": { "page": "missionControl" } }`
 3. Verify the navigation state reports the requested tab selected.
 4. Capture the frame with `mcp_launcher_qa_screenshot_window` (in-app `captureFrame`;
    the window is never raised or focused).

@@ -16,7 +16,7 @@ The Launcher Posts tab had semantic navigation and a visible window, but the req
 ## Durable proof rules
 
 - Do not accept a Posts tab screenshot as algorithm-controls proof unless the screenshot visibly shows `Algorithm Controls` and the relevant slider labels/values.
-- If source code says the panel is mounted but pixels still show old rail content, suspect a stale Windows binary. Kill Launcher, rebuild `flutter build windows --debug --target lib/main_marionette.dart`, relaunch, then recapture.
+- If source code says the panel is mounted but pixels still show old rail content, suspect a stale Windows binary. Kill Launcher, rebuild `flutter build windows --debug`, relaunch, then recapture.
 - If the panel is stuck on `Loading algorithm controls…`, check whether provider hydration is blocked. A backend 500/HTML response should not render raw server HTML in the panel; read-only config providers can safely degrade to fallback config while admin PATCH remains strict.
 - Treat Flutter overflow banners as proof failures, not cosmetic noise. Fix layout and recapture.
 - A right rail that disappears after making it scrollable is also proof failure. Prefer bounding the controls panel with `Expanded` and putting `SingleChildScrollView` inside the panel content rather than a loose whole-rail scroll that can collapse/vanish.
