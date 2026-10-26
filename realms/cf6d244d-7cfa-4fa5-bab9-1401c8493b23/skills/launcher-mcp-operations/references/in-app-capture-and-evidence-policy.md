@@ -37,13 +37,15 @@ anything. `resize_window` is a debug control, not a capture prerequisite.
 ## Evidence defaults
 
 - PNG for model/vision analysis and for human proof.
-- Motion/timing defects: an in-app frame sequence with a state readback per frame, and a
-  plain statement that no video was taken — there is no in-app recorder yet.
+- Motion/timing defects: an in-app frame sequence with a state readback per frame. Record
+  video (`mcp_launcher_qa_record_video`) only when a row or the operator explicitly asks for
+  it — it is opt-in, capped, and costs a screenshot's tokens per frame you open.
 - If an older MP4 exists and the question is static, ignore it and capture a fresh frame.
 
 ## Operational sequence
 
-1. Launch/attach and, if the surface needs a signed-in session, `dev_login` first.
+1. Launch/attach and, if the surface needs a signed-in session, confirm the persisted
+   `stagec-smoke` session first (SKILL.md section 0; `dev_login` is chrome only).
 2. Navigate and drive semantic controls; read the state back.
 3. Capture with `screenshot_window`.
 4. On a named refusal, classify it (see `stagec-blank-visual-after-semantic-nav.md`) —

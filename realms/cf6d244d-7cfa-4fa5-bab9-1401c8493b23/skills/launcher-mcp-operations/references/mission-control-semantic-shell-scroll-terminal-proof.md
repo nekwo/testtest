@@ -35,8 +35,8 @@ scrolling as if it were acceptable evidence.
    when relevant:
    - `profile: stagec-smoke`
    - `credential_profile: stagec-smoke`
-   - `dev_login: true` when the surface needs a signed-in session (QA builds; the
-     staging `browser_login: true` flow only when real credentials are the point)
+   - a signed-in session from the persisted `stagec-smoke` session (SKILL.md section 0);
+     `dev_login: true` only for chrome — it mints no token
    - `hermes_profile: alice`
    - `harness_runtime_root` and `hermes_home` explicitly pinned for parity screenshots.
 2. Confirm semantic scroll affordances before scrolling:
@@ -76,13 +76,12 @@ still be an older binary or built against the wrong target.
 Recovery:
 
 1. Kill/close only the running Launcher process if it locks `WebView2Loader.dll`.
-2. Rebuild the QA target, not the regular target:
-   - `flutter build windows --debug --target lib/main_marionette.dart`
+2. Rebuild the Debug build (one entry, `lib/main.dart`, carries the QA surface):
+   - `flutter build windows --debug`
 3. Relaunch through Stage C MCP and re-check `get_buttons` for `shell.scroll.*` controls.
 
-Stage C correctly rejects a regular `flutter build windows --debug` binary with
-`launch_wrong_debug_target_missing_marionette`; treat that as a freshness/build-target
-guardrail, not a product bug.
+Every Debug build is QA-drivable since the one-entry fold (2026-10-11); the old
+wrong-target refusal no longer exists.
 
 ## Interpretation
 

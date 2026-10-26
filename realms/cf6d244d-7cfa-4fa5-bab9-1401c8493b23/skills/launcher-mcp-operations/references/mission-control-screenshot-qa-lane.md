@@ -42,9 +42,9 @@ When screenshot QA is unavailable, classify the reason precisely:
 
 For user-facing Launcher UI changes, collect at least one real PNG when available:
 
-1. Open the app through MCP. If the surface needs a signed-in session, pass
-   `dev_login: true` (QA builds), or `browser_login: true` with
-   `credential_profile: stagec-smoke` when real staging credentials are the point.
+1. Open the app through MCP. If the surface needs a signed-in session, confirm the
+   persisted `stagec-smoke` session (SKILL.md section 0). `dev_login: true` shows the
+   signed-in chrome only — no token, backend data does not load.
 2. Navigate to the relevant shell surface.
 3. Drive semantic controls if exposed; otherwise record the semantic-control gap.
 4. Capture with `mcp_launcher_qa_screenshot_window`.

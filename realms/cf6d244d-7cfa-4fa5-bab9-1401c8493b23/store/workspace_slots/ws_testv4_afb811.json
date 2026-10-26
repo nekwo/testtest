@@ -1,0 +1,12 @@
+{
+  "issued_at": "",
+  "machines": {
+    "bbdb8120-575d-4890-85e7-ecdbd650cde0": {
+      "reported_at": "2026-10-15T22:15:00.273154+00:00",
+      "slots": {}
+    }
+  },
+  "schema_version": 1,
+  "slots": {},
+  "workspace_id": "ws_testv4_afb811"
+}

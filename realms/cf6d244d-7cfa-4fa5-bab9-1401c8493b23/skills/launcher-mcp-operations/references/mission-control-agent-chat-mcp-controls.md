@@ -71,7 +71,7 @@ remains a runtime/product gap even if the MCP click succeeded.
 
 ## Build freshness pitfall
 
-If rebuilding `lib/main_marionette.dart` fails because `WebView2Loader.dll` is locked by
+If rebuilding the Debug build (`flutter build windows --debug`) fails because `WebView2Loader.dll` is locked by
 `eternia_launcher`, close/kill the attached QA Launcher first, then rebuild. This is a
 normal freshness step before live MCP proof, not a product defect. Never kill the
 operator's own live Launcher to unblock a build without asking — record the exact PID and

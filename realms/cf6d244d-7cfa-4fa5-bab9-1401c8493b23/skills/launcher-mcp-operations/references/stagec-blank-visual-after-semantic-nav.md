@@ -32,13 +32,14 @@ in-app frame proves the rendered UI.
 
 ## Diagnostic sequence
 
-1. If launch fails with `launch_wrong_debug_target_missing_marionette`, the binary is not a
-   QA build. Let `launch_or_attach` rebuild its isolated QA copy (it does so when the copy
-   is stale), or rebuild the marionette target per the Stage C operator runbook.
+1. If the binary is stale, call `launch_or_attach` with no `exe_dir`: it builds and
+   launches the Debug build of HEAD (the default). If it answers
+   `launch_debug_build_locked`, the owner's Launcher holds `Debug/` — report the pid, never
+   kill it.
 2. Relaunch/navigate with MCP and verify state: `navigation_state.selected_tab=<target>`,
    `blocking_modal_present=false`, shell mounted, expected semantic nav controls visible,
    and `auth_state.status=authenticated` when the surface needs a signed-in session
-   (`dev_login` first).
+   (the persisted `stagec-smoke` session — SKILL.md section 0).
 3. Capture with `screenshot_window`.
 4. On a refusal, switch to a known-good tab such as Home once and capture again. If that is
    refused too, classify it as a rendered-visual blocker rather than a surface-specific

@@ -64,7 +64,7 @@ remaining product/UI gaps even when deterministic tests pass.
 - Hermes: `python -m pytest -q tests/agent_runtime/test_capabilities.py`
 - Launcher: `flutter test test/features/mission_control/harness_capability_registry_test.dart`
 - Launcher page: `flutter test test/features/mission_control/mission_control_page_test.dart`
-- If MCP reports `launch_wrong_debug_target_missing_marionette`, rebuild with
-  `flutter build windows --debug --target lib/main_marionette.dart`.
+- A stale binary is rebuilt with `flutter build windows --debug` (there is one entry,
+  `lib/main.dart`; the old wrong-target refusal is retired).
 - If the rebuild fails on a locked `WebView2Loader.dll`, close/kill the stale Launcher
   process and rerun the build; capture that as lock recovery, not a product defect.

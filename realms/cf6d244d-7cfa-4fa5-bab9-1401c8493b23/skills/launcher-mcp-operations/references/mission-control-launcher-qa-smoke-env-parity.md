@@ -55,7 +55,8 @@ helper:
 1. Confirm the helper script accepts and applies the env contract (`-HermesProfile`,
    `-HarnessRuntimeRoot`, `-HermesHome`) to the child Launcher process.
 2. Inspect the MCP server launch layer that invokes the helper, especially
-   `tool/stagec_qa_mcp_server/lib/launch_manager.dart` / `buildLaunchArgs()`. A common
+   `tool/stagec_qa_mcp_server/lib/launch_manager.dart` / `buildLaunchArgs()` (body in
+   `tool/stagec_qa_mcp_server/lib/launch/helper_argv.dart`). A common
    failure mode is that the helper supports the parameters but the MCP launch manager
    never forwards them.
 3. Inspect MCP tool schemas/composers too: `mcp_launcher_qa_launch_or_attach` and
@@ -93,7 +94,8 @@ regression tests for the launch args and the open-tab/launch-or-attach compositi
   bounded failure such as `app_env_pin_mismatch`, with a suggested next action to relaunch
   using `force_relaunch:true` / `reap_stale:true` and the requested pins.
 - If a tab schema is stale, add the requested tab to the Stage C MCP tab enums before
-  relying on first-class `open_app_tab`/`set_tab` for that surface.
+  relying on first-class `open_app_tab` for that surface (`set_tab` is retired; the
+  app function's page list, `kAppFunctionOpenablePages`, is the authority the enum mirrors).
 - After MCP source/tool-catalog changes, rebuild the canonical server executable:
   `tool/stagec_qa_mcp_server/build/stagec_qa_mcp_server.exe`.
 

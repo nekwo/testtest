@@ -1,6 +1,7 @@
 {
   "archived_card_ids": [
-    "card_73397cd40fe44b7ea1c6c3830bdd3a53"
+    "card_73397cd40fe44b7ea1c6c3830bdd3a53",
+    "card_d855bbd1d4ea4c2cb33193978a04822d"
   ],
   "board_id": "board_default_ws_testv4_afb811",
   "columns": [
@@ -33,7 +34,7 @@
   "revision": 1,
   "schema_version": 1,
   "title": "Board",
-  "updated_at": "2026-07-24T14:07:38.112187Z",
+  "updated_at": "2026-10-26T02:48:16.387700Z",
   "updated_by": "operator",
   "workspace_id": "ws_testv4_afb811"
 }

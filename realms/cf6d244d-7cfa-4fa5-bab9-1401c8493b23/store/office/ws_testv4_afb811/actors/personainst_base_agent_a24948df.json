@@ -1,0 +1,28 @@
+{
+  "actor_key": "personainst_base_agent_a24948df",
+  "backing_profile": null,
+  "created_at": "2026-10-15T17:39:01.705623Z",
+  "items": [
+    {
+      "display_name": "Base Agent",
+      "folder": "Agents",
+      "item_id": "personainst_base_agent_a24948df",
+      "kind": "agent",
+      "persona_id": "base",
+      "pet_slug": null,
+      "position": [
+        4.1967973709106445,
+        0.8779990077018738
+      ],
+      "scale": 1.0
+    }
+  ],
+  "persona_id": "base",
+  "persona_instance_id": "personainst_base_agent_a24948df",
+  "revision": 2,
+  "schema_version": 1,
+  "state": "active",
+  "updated_at": "2026-10-15T17:39:04.192042Z",
+  "updated_by": "operator",
+  "workspace_id": "ws_testv4_afb811"
+}
