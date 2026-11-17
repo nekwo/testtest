@@ -21,6 +21,25 @@ instances:
     workspace_id: ws_testv4_afb811
   personainst_dev_agent_8b319ebf:
     api_mode: codex_responses
+    character_assignment:
+      asset_reference: chara:anime-girl
+      migration_receipt:
+        migrated_at: '2026-10-30T22:27:48.674611-04:00'
+        source_fingerprint: 3aee85840c153e1e4bc962cb6bc67219555c1980c8fcbb03576f02ba7e6edb35
+        sources:
+          - actor_key: personainst_dev_agent_8b319ebf
+            instance_id: personainst_dev_agent_8b319ebf
+            item_id: personainst_dev_agent_8b319ebf
+            persona_id: dev
+            revision: 5
+            source: office
+            value: chara:anime-girl
+            workspace_id: ws_testv4_afb811
+        version: 1
+      mode: assigned
+      operation_id: migration-v1-3aee85840c153e1e4bc962cb6bc67219555c1980c8fcbb03576f02ba7e6edb35
+      revision: 1
+      version: 1
     display_name: Launcher Dev Agent
     id: personainst_dev_agent_8b319ebf
     mode: chat
@@ -33,6 +52,8 @@ instances:
     workspace_id: ws_testv4_afb811
   personainst_neko_supervisor_agent_07c76f93:
     api_mode: anthropic_messages
+    assigned_slots:
+      - eternialauncher
     display_name: Neko Mission Lead
     id: personainst_neko_supervisor_agent_07c76f93
     mode: chat
@@ -41,6 +62,7 @@ instances:
     persona_id: neko_supervisor
     provider: anthropic
     realm_id: cf6d244d-7cfa-4fa5-bab9-1401c8493b23
+    slots_issued_at: '2026-11-08T05:16:59.682851Z'
     spawned_by: operator
     workspace_id: ws_testv4_afb811
 kind: realm_persona_instances

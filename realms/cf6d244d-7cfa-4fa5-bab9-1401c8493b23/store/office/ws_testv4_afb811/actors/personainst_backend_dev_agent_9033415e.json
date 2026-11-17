@@ -11,18 +11,18 @@
       "persona_id": "backend_dev",
       "pet_slug": null,
       "position": [
-        -3.6981024742126465,
-        -0.5573392510414124
+        -4.168973922729492,
+        -2.111111640930176
       ],
       "scale": 1.0
     }
   ],
   "persona_id": "backend_dev",
   "persona_instance_id": "personainst_backend_dev_agent_9033415e",
-  "revision": 4,
+  "revision": 12,
   "schema_version": 1,
   "state": "active",
-  "updated_at": "2026-09-25T20:47:21.441952Z",
-  "updated_by": "realm_sync_revert",
+  "updated_at": "2026-11-03T00:53:49.290102Z",
+  "updated_by": "operator",
   "workspace_id": "ws_testv4_afb811"
 }
