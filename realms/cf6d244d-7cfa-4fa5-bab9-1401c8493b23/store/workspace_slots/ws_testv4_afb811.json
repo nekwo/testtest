@@ -1,12 +1,220 @@
 {
-  "issued_at": "",
+  "issued_at": "2026-11-13T15:14:20.491866Z",
   "machines": {
     "bbdb8120-575d-4890-85e7-ecdbd650cde0": {
       "reported_at": "2026-10-15T22:15:00.273154+00:00",
       "slots": {}
+    },
+    "mach_4e22c710ae80433393aef77ea953aee2": {
+      "namespace": "acct-26858805fff7de3b",
+      "reported_at": "2026-11-16T19:39:49.972000+00:00",
+      "slots": {
+        "brain": {
+          "bound": true,
+          "checkout": "matches",
+          "dotenv": null,
+          "env_keys": {},
+          "status": "ready",
+          "tools": {},
+          "unknowns": []
+        },
+        "eternialauncher": {
+          "bound": true,
+          "checkout": "matches",
+          "dotenv": null,
+          "env_keys": {},
+          "status": "ready",
+          "tools": {},
+          "unknowns": []
+        },
+        "hermes_eternia_harness": {
+          "bound": true,
+          "checkout": "matches",
+          "dotenv": {
+            "keys": {
+              "BROWSERBASE_ADVANCED_STEALTH": "missing",
+              "BROWSERBASE_PROXIES": "missing",
+              "BROWSER_INACTIVITY_TIMEOUT": "missing",
+              "BROWSER_SESSION_TIMEOUT": "missing",
+              "IMAGE_TOOLS_DEBUG": "missing",
+              "MOA_TOOLS_DEBUG": "missing",
+              "TERMINAL_LIFETIME_SECONDS": "missing",
+              "TERMINAL_MODAL_IMAGE": "missing",
+              "TERMINAL_TIMEOUT": "missing",
+              "VISION_TOOLS_DEBUG": "missing",
+              "WEB_TOOLS_DEBUG": "missing"
+            },
+            "present": false
+          },
+          "env_keys": {},
+          "status": "ready",
+          "tools": {
+            "python": {
+              "status": "set",
+              "version": "3.14.9"
+            }
+          },
+          "unknowns": []
+        }
+      }
     }
   },
   "schema_version": 1,
-  "slots": {},
+  "slots": {
+    "brain": {
+      "context": {
+        "brain_dir": "Work_Brain/20 — Active Initiatives",
+        "files": null,
+        "gate": [],
+        "role": "brain"
+      },
+      "declared_at": "2026-11-13T15:14:20.491866Z",
+      "declared_by_machine": "mach_4e22c710ae80433393aef77ea953aee2",
+      "issued_at": "2026-11-13T15:14:20.491866Z",
+      "recipe": {
+        "edited_at": null,
+        "edited_by": null,
+        "revision": 0,
+        "steps": []
+      },
+      "removed_at": null,
+      "repo": {
+        "clone_url": "https://github.com/nekwo/eternia-work-testv4.git",
+        "default_branch": "main"
+      },
+      "toolchain": {
+        "dotenv": null,
+        "env_keys": [],
+        "kind": "brain",
+        "tools": []
+      }
+    },
+    "eternialauncher": {
+      "context": {
+        "adr_dirs": [
+          "docs/adr",
+          "docs/decisions"
+        ],
+        "document_dirs": [
+          "docs"
+        ],
+        "files": [
+          "CLAUDE.md",
+          "AGENTS.md"
+        ],
+        "role": ""
+      },
+      "declared_at": "2026-11-13T15:14:20.491866Z",
+      "declared_by_machine": "mach_4e22c710ae80433393aef77ea953aee2",
+      "issued_at": "2026-11-13T15:14:20.491866Z",
+      "recipe": {
+        "edited_at": null,
+        "edited_by": null,
+        "revision": 0,
+        "steps": []
+      },
+      "removed_at": null,
+      "repo": {
+        "clone_url": "https://github.com/ArcadiaLabsLLC/EterniaLauncher",
+        "default_branch": "main"
+      },
+      "toolchain": {
+        "dotenv": null,
+        "env_keys": [],
+        "kind": "",
+        "tools": []
+      }
+    },
+    "hermes_eternia_harness": {
+      "context": {
+        "files": null,
+        "role": ""
+      },
+      "declared_at": "2026-11-13T15:14:20.491866Z",
+      "declared_by_machine": "mach_4e22c710ae80433393aef77ea953aee2",
+      "issued_at": "2026-11-13T15:14:20.491866Z",
+      "recipe": {
+        "edited_at": null,
+        "edited_by": null,
+        "revision": 0,
+        "steps": []
+      },
+      "removed_at": null,
+      "repo": {
+        "clone_url": "https://github.com/ArcadiaLabsLLC/hermes-agent",
+        "default_branch": "main"
+      },
+      "toolchain": {
+        "dotenv": {
+          "keys": [
+            {
+              "key": "TERMINAL_MODAL_IMAGE",
+              "required": true,
+              "secret": false
+            },
+            {
+              "key": "TERMINAL_TIMEOUT",
+              "required": true,
+              "secret": false
+            },
+            {
+              "key": "TERMINAL_LIFETIME_SECONDS",
+              "required": true,
+              "secret": false
+            },
+            {
+              "key": "BROWSERBASE_PROXIES",
+              "required": true,
+              "secret": false
+            },
+            {
+              "key": "BROWSERBASE_ADVANCED_STEALTH",
+              "required": true,
+              "secret": false
+            },
+            {
+              "key": "BROWSER_SESSION_TIMEOUT",
+              "required": true,
+              "secret": false
+            },
+            {
+              "key": "BROWSER_INACTIVITY_TIMEOUT",
+              "required": true,
+              "secret": false
+            },
+            {
+              "key": "WEB_TOOLS_DEBUG",
+              "required": true,
+              "secret": false
+            },
+            {
+              "key": "VISION_TOOLS_DEBUG",
+              "required": true,
+              "secret": false
+            },
+            {
+              "key": "MOA_TOOLS_DEBUG",
+              "required": true,
+              "secret": false
+            },
+            {
+              "key": "IMAGE_TOOLS_DEBUG",
+              "required": true,
+              "secret": false
+            }
+          ],
+          "path": ".env"
+        },
+        "env_keys": [],
+        "kind": "python",
+        "tools": [
+          {
+            "min_version": null,
+            "name": "python"
+          }
+        ]
+      }
+    }
+  },
   "workspace_id": "ws_testv4_afb811"
 }
