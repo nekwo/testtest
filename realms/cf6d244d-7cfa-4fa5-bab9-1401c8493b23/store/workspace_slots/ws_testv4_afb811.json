@@ -1,5 +1,5 @@
 {
-  "issued_at": "2026-11-13T15:14:20.491866Z",
+  "issued_at": "2026-11-18T18:19:53.382204Z",
   "machines": {
     "bbdb8120-575d-4890-85e7-ecdbd650cde0": {
       "reported_at": "2026-10-15T22:15:00.273154+00:00",
@@ -7,17 +7,8 @@
     },
     "mach_4e22c710ae80433393aef77ea953aee2": {
       "namespace": "acct-26858805fff7de3b",
-      "reported_at": "2026-11-16T19:39:49.972000+00:00",
+      "reported_at": "2026-11-18T18:54:33.651403+00:00",
       "slots": {
-        "brain": {
-          "bound": true,
-          "checkout": "matches",
-          "dotenv": null,
-          "env_keys": {},
-          "status": "ready",
-          "tools": {},
-          "unknowns": []
-        },
         "eternialauncher": {
           "bound": true,
           "checkout": "matches",
@@ -70,14 +61,14 @@
       },
       "declared_at": "2026-11-13T15:14:20.491866Z",
       "declared_by_machine": "mach_4e22c710ae80433393aef77ea953aee2",
-      "issued_at": "2026-11-13T15:14:20.491866Z",
+      "issued_at": "2026-11-18T18:19:53.382204Z",
       "recipe": {
         "edited_at": null,
         "edited_by": null,
-        "revision": 0,
+        "revision": 1,
         "steps": []
       },
-      "removed_at": null,
+      "removed_at": "2026-11-18T18:19:53.382204Z",
       "repo": {
         "clone_url": "https://github.com/nekwo/eternia-work-testv4.git",
         "default_branch": "main"
@@ -104,9 +95,9 @@
         ],
         "role": ""
       },
-      "declared_at": "2026-11-13T15:14:20.491866Z",
+      "declared_at": "2026-11-18T18:19:53.382204Z",
       "declared_by_machine": "mach_4e22c710ae80433393aef77ea953aee2",
-      "issued_at": "2026-11-13T15:14:20.491866Z",
+      "issued_at": "2026-11-18T18:19:53.382204Z",
       "recipe": {
         "edited_at": null,
         "edited_by": null,
@@ -130,9 +121,9 @@
         "files": null,
         "role": ""
       },
-      "declared_at": "2026-11-13T15:14:20.491866Z",
+      "declared_at": "2026-11-18T18:19:53.382204Z",
       "declared_by_machine": "mach_4e22c710ae80433393aef77ea953aee2",
-      "issued_at": "2026-11-13T15:14:20.491866Z",
+      "issued_at": "2026-11-18T18:19:53.382204Z",
       "recipe": {
         "edited_at": null,
         "edited_by": null,
