@@ -1,5 +1,5 @@
 {
-  "issued_at": "2026-11-18T18:19:53.382204Z",
+  "issued_at": "2026-11-18T19:29:35.479892Z",
   "machines": {
     "bbdb8120-575d-4890-85e7-ecdbd650cde0": {
       "reported_at": "2026-10-15T22:15:00.273154+00:00",
@@ -7,7 +7,7 @@
     },
     "mach_4e22c710ae80433393aef77ea953aee2": {
       "namespace": "acct-26858805fff7de3b",
-      "reported_at": "2026-11-18T18:54:33.651403+00:00",
+      "reported_at": "2026-11-18T19:29:36.088597+00:00",
       "slots": {
         "eternialauncher": {
           "bound": true,
@@ -45,6 +45,15 @@
               "version": "3.14.9"
             }
           },
+          "unknowns": []
+        },
+        "testslot1": {
+          "bound": true,
+          "checkout": "folder",
+          "dotenv": null,
+          "env_keys": {},
+          "status": "ready",
+          "tools": {},
           "unknowns": []
         }
       }
@@ -95,9 +104,9 @@
         ],
         "role": ""
       },
-      "declared_at": "2026-11-18T18:19:53.382204Z",
+      "declared_at": "2026-11-18T19:29:35.479892Z",
       "declared_by_machine": "mach_4e22c710ae80433393aef77ea953aee2",
-      "issued_at": "2026-11-18T18:19:53.382204Z",
+      "issued_at": "2026-11-18T19:29:35.479892Z",
       "recipe": {
         "edited_at": null,
         "edited_by": null,
@@ -121,9 +130,9 @@
         "files": null,
         "role": ""
       },
-      "declared_at": "2026-11-18T18:19:53.382204Z",
+      "declared_at": "2026-11-18T19:29:35.479892Z",
       "declared_by_machine": "mach_4e22c710ae80433393aef77ea953aee2",
-      "issued_at": "2026-11-18T18:19:53.382204Z",
+      "issued_at": "2026-11-18T19:29:35.479892Z",
       "recipe": {
         "edited_at": null,
         "edited_by": null,
@@ -204,6 +213,33 @@
             "name": "python"
           }
         ]
+      }
+    },
+    "testslot1": {
+      "context": {
+        "files": null,
+        "role": ""
+      },
+      "declared_at": "2026-11-18T19:29:35.479892Z",
+      "declared_by_machine": "mach_4e22c710ae80433393aef77ea953aee2",
+      "issued_at": "2026-11-18T19:29:35.479892Z",
+      "recipe": {
+        "edited_at": null,
+        "edited_by": null,
+        "revision": 0,
+        "steps": []
+      },
+      "removed_at": null,
+      "repo": {
+        "clone_url": null,
+        "default_branch": "main",
+        "local": true
+      },
+      "toolchain": {
+        "dotenv": null,
+        "env_keys": [],
+        "kind": "",
+        "tools": []
       }
     }
   },
