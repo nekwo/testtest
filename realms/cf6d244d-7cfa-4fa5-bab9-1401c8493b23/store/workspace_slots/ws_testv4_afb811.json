@@ -1,5 +1,5 @@
 {
-  "issued_at": "2026-11-18T19:29:35.479892Z",
+  "issued_at": "2026-11-19T00:29:27.292517Z",
   "machines": {
     "bbdb8120-575d-4890-85e7-ecdbd650cde0": {
       "reported_at": "2026-10-15T22:15:00.273154+00:00",
@@ -7,53 +7,18 @@
     },
     "mach_4e22c710ae80433393aef77ea953aee2": {
       "namespace": "acct-26858805fff7de3b",
-      "reported_at": "2026-11-18T19:29:36.088597+00:00",
+      "reported_at": "2026-11-19T00:29:27.610982+00:00",
       "slots": {
         "eternialauncher": {
           "bound": true,
           "checkout": "matches",
-          "dotenv": null,
-          "env_keys": {},
           "status": "ready",
-          "tools": {},
           "unknowns": []
         },
         "hermes_eternia_harness": {
           "bound": true,
           "checkout": "matches",
-          "dotenv": {
-            "keys": {
-              "BROWSERBASE_ADVANCED_STEALTH": "missing",
-              "BROWSERBASE_PROXIES": "missing",
-              "BROWSER_INACTIVITY_TIMEOUT": "missing",
-              "BROWSER_SESSION_TIMEOUT": "missing",
-              "IMAGE_TOOLS_DEBUG": "missing",
-              "MOA_TOOLS_DEBUG": "missing",
-              "TERMINAL_LIFETIME_SECONDS": "missing",
-              "TERMINAL_MODAL_IMAGE": "missing",
-              "TERMINAL_TIMEOUT": "missing",
-              "VISION_TOOLS_DEBUG": "missing",
-              "WEB_TOOLS_DEBUG": "missing"
-            },
-            "present": false
-          },
-          "env_keys": {},
           "status": "ready",
-          "tools": {
-            "python": {
-              "status": "set",
-              "version": "3.14.9"
-            }
-          },
-          "unknowns": []
-        },
-        "testslot1": {
-          "bound": true,
-          "checkout": "folder",
-          "dotenv": null,
-          "env_keys": {},
-          "status": "ready",
-          "tools": {},
           "unknowns": []
         }
       }
@@ -104,25 +69,17 @@
         ],
         "role": ""
       },
-      "declared_at": "2026-11-18T19:29:35.479892Z",
+      "declared_at": "2026-11-19T00:29:27.292517Z",
       "declared_by_machine": "mach_4e22c710ae80433393aef77ea953aee2",
-      "issued_at": "2026-11-18T19:29:35.479892Z",
-      "recipe": {
-        "edited_at": null,
-        "edited_by": null,
-        "revision": 0,
-        "steps": []
-      },
+      "issued_at": "2026-11-19T00:29:27.292517Z",
       "removed_at": null,
       "repo": {
         "clone_url": "https://github.com/ArcadiaLabsLLC/EterniaLauncher",
         "default_branch": "main"
       },
+      "revision": 1,
       "toolchain": {
-        "dotenv": null,
-        "env_keys": [],
-        "kind": "",
-        "tools": []
+        "kind": ""
       }
     },
     "hermes_eternia_harness": {
@@ -130,89 +87,17 @@
         "files": null,
         "role": ""
       },
-      "declared_at": "2026-11-18T19:29:35.479892Z",
+      "declared_at": "2026-11-19T00:29:27.292517Z",
       "declared_by_machine": "mach_4e22c710ae80433393aef77ea953aee2",
-      "issued_at": "2026-11-18T19:29:35.479892Z",
-      "recipe": {
-        "edited_at": null,
-        "edited_by": null,
-        "revision": 0,
-        "steps": []
-      },
+      "issued_at": "2026-11-19T00:29:27.292517Z",
       "removed_at": null,
       "repo": {
         "clone_url": "https://github.com/ArcadiaLabsLLC/hermes-agent",
         "default_branch": "main"
       },
+      "revision": 1,
       "toolchain": {
-        "dotenv": {
-          "keys": [
-            {
-              "key": "TERMINAL_MODAL_IMAGE",
-              "required": true,
-              "secret": false
-            },
-            {
-              "key": "TERMINAL_TIMEOUT",
-              "required": true,
-              "secret": false
-            },
-            {
-              "key": "TERMINAL_LIFETIME_SECONDS",
-              "required": true,
-              "secret": false
-            },
-            {
-              "key": "BROWSERBASE_PROXIES",
-              "required": true,
-              "secret": false
-            },
-            {
-              "key": "BROWSERBASE_ADVANCED_STEALTH",
-              "required": true,
-              "secret": false
-            },
-            {
-              "key": "BROWSER_SESSION_TIMEOUT",
-              "required": true,
-              "secret": false
-            },
-            {
-              "key": "BROWSER_INACTIVITY_TIMEOUT",
-              "required": true,
-              "secret": false
-            },
-            {
-              "key": "WEB_TOOLS_DEBUG",
-              "required": true,
-              "secret": false
-            },
-            {
-              "key": "VISION_TOOLS_DEBUG",
-              "required": true,
-              "secret": false
-            },
-            {
-              "key": "MOA_TOOLS_DEBUG",
-              "required": true,
-              "secret": false
-            },
-            {
-              "key": "IMAGE_TOOLS_DEBUG",
-              "required": true,
-              "secret": false
-            }
-          ],
-          "path": ".env"
-        },
-        "env_keys": [],
-        "kind": "python",
-        "tools": [
-          {
-            "min_version": null,
-            "name": "python"
-          }
-        ]
+        "kind": "python"
       }
     },
     "testslot1": {
@@ -222,24 +107,16 @@
       },
       "declared_at": "2026-11-18T19:29:35.479892Z",
       "declared_by_machine": "mach_4e22c710ae80433393aef77ea953aee2",
-      "issued_at": "2026-11-18T19:29:35.479892Z",
-      "recipe": {
-        "edited_at": null,
-        "edited_by": null,
-        "revision": 0,
-        "steps": []
-      },
-      "removed_at": null,
+      "issued_at": "2026-11-19T00:29:27.292517Z",
+      "removed_at": "2026-11-19T00:29:27.292517Z",
       "repo": {
         "clone_url": null,
         "default_branch": "main",
         "local": true
       },
+      "revision": 1,
       "toolchain": {
-        "dotenv": null,
-        "env_keys": [],
-        "kind": "",
-        "tools": []
+        "kind": ""
       }
     }
   },
