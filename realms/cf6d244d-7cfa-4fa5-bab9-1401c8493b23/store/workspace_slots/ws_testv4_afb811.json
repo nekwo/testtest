@@ -1,5 +1,5 @@
 {
-  "issued_at": "2026-11-19T00:29:27.292517Z",
+  "issued_at": "2026-11-19T01:22:29.262219Z",
   "machines": {
     "bbdb8120-575d-4890-85e7-ecdbd650cde0": {
       "reported_at": "2026-10-15T22:15:00.273154+00:00",
@@ -7,8 +7,14 @@
     },
     "mach_4e22c710ae80433393aef77ea953aee2": {
       "namespace": "acct-26858805fff7de3b",
-      "reported_at": "2026-11-19T00:29:27.610982+00:00",
+      "reported_at": "2026-11-19T01:22:29.738916+00:00",
       "slots": {
+        "eternia_backend": {
+          "bound": true,
+          "checkout": "matches",
+          "status": "ready",
+          "unknowns": []
+        },
         "eternialauncher": {
           "bound": true,
           "checkout": "matches",
@@ -54,6 +60,24 @@
         "tools": []
       }
     },
+    "eternia_backend": {
+      "context": {
+        "files": null,
+        "role": ""
+      },
+      "declared_at": "2026-11-19T01:22:29.262219Z",
+      "declared_by_machine": "mach_4e22c710ae80433393aef77ea953aee2",
+      "issued_at": "2026-11-19T01:22:29.262219Z",
+      "removed_at": null,
+      "repo": {
+        "clone_url": "https://github.com/ArcadiaLabsLLC/eternia-backend",
+        "default_branch": "main"
+      },
+      "revision": 0,
+      "toolchain": {
+        "kind": "python"
+      }
+    },
     "eternialauncher": {
       "context": {
         "adr_dirs": [
@@ -69,9 +93,9 @@
         ],
         "role": ""
       },
-      "declared_at": "2026-11-19T00:29:27.292517Z",
+      "declared_at": "2026-11-19T01:22:29.262219Z",
       "declared_by_machine": "mach_4e22c710ae80433393aef77ea953aee2",
-      "issued_at": "2026-11-19T00:29:27.292517Z",
+      "issued_at": "2026-11-19T01:22:29.262219Z",
       "removed_at": null,
       "repo": {
         "clone_url": "https://github.com/ArcadiaLabsLLC/EterniaLauncher",
@@ -87,9 +111,9 @@
         "files": null,
         "role": ""
       },
-      "declared_at": "2026-11-19T00:29:27.292517Z",
+      "declared_at": "2026-11-19T01:22:29.262219Z",
       "declared_by_machine": "mach_4e22c710ae80433393aef77ea953aee2",
-      "issued_at": "2026-11-19T00:29:27.292517Z",
+      "issued_at": "2026-11-19T01:22:29.262219Z",
       "removed_at": null,
       "repo": {
         "clone_url": "https://github.com/ArcadiaLabsLLC/hermes-agent",
