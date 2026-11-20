@@ -15,7 +15,8 @@
     "personainst_neko_supervisor_agent_9682caf4",
     "personainst_qa_agent_9ec01c76",
     "personainst_neko_supervisor_agent_2e94fab3",
-    "personainst_neko_supervisor_agent_ea89bae7"
+    "personainst_neko_supervisor_agent_ea89bae7",
+    "personainst_base_agent_a24948df"
   ],
   "created_at": "2026-07-18T05:22:26.688315Z",
   "folders": [
@@ -24,7 +25,7 @@
   ],
   "revision": 29,
   "schema_version": 1,
-  "updated_at": "2026-09-25T20:36:44.193410Z",
+  "updated_at": "2026-11-20T04:25:19.972993Z",
   "updated_by": "realm_sync",
   "workspace_id": "ws_testv4_afb811"
 }

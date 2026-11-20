@@ -30,8 +30,6 @@ personas:
       - systematic-debugging
       - test-driven-development
     system_prompt_path: ''
-  base:
-    origin: eternia
   dev:
     api_mode: codex_responses
     autonomy: autonomous
@@ -69,5 +67,4 @@ personas:
     origin: eternia
 schema_version: 1
 shipped_agents:
-  base: a28c69073e3d203b
   neko_supervisor: 42256fd742168c0d

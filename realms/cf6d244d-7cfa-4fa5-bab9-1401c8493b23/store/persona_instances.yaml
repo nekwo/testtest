@@ -7,18 +7,6 @@ instances:
     realm_id: cf6d244d-7cfa-4fa5-bab9-1401c8493b23
     spawned_by: operator
     workspace_id: ws_testv4_afb811
-  personainst_base_agent_a24948df:
-    api_mode: anthropic_messages
-    display_name: Base Agent
-    id: personainst_base_agent_a24948df
-    mode: chat
-    model: claude-opus-5-5
-    model_override_issued_at: '2026-10-15T18:28:54.171194Z'
-    persona_id: base
-    provider: anthropic
-    realm_id: cf6d244d-7cfa-4fa5-bab9-1401c8493b23
-    spawned_by: operator
-    workspace_id: ws_testv4_afb811
   personainst_dev_agent_8b319ebf:
     api_mode: codex_responses
     character_assignment:
