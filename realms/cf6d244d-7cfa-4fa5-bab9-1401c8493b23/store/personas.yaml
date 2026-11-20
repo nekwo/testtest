@@ -31,17 +31,7 @@ personas:
       - test-driven-development
     system_prompt_path: ''
   base:
-    api_mode: codex_responses
-    autonomy: propose_only
-    display_name: Base Agent
-    hermes_profile: base
-    include_core_context_files: false
-    include_profile_memory: true
-    role: profile
-    skills:
-      - harness-runtime-model
-      - harness-charsheet-authoring
-    system_prompt_path: ''
+    origin: eternia
   dev:
     api_mode: codex_responses
     autonomy: autonomous
@@ -76,26 +66,8 @@ personas:
       - test-driven-development
     system_prompt_path: ''
   neko_supervisor:
-    api_mode: codex_responses
-    autonomy: propose_only
-    chat_lane_restore_toolsets:
-      - file
-    display_name: Neko Mission Lead
-    hermes_profile: neko
-    include_core_context_files: false
-    include_profile_memory: true
-    model: gpt-5.6-luna
-    provider: openai-codex
-    required_mcp_servers: []
-    role: alice_supervisor
-    skills:
-      - eternia-backend-tests
-      - eternia-hermes-agent
-      - eternia-launcher-workflow
-      - eternia-writing-plans
-      - harness-runtime-model
-      - staged-deep-audit-delivery
-      - systematic-debugging
-    soul_overlay_path: SOUL.md
-    system_prompt_path: ''
+    origin: eternia
 schema_version: 1
+shipped_agents:
+  base: a28c69073e3d203b
+  neko_supervisor: 42256fd742168c0d
