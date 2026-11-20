@@ -4,11 +4,11 @@
   "created_at": "2026-10-05T18:50:56.145352Z",
   "items": [
     {
-      "display_name": "Neko Mission Lead",
+      "display_name": "Neko Mission Lead Beta",
       "folder": "Agents",
       "item_id": "personainst_neko_supervisor_agent_07c76f93",
       "kind": "agent",
-      "persona_id": "neko_supervisor",
+      "persona_id": "neko_mission_lead_beta",
       "pet_slug": null,
       "position": [
         -1.1289900541305542,
@@ -17,12 +17,12 @@
       "scale": 1.0
     }
   ],
-  "persona_id": "neko_supervisor",
+  "persona_id": "neko_mission_lead_beta",
   "persona_instance_id": "personainst_neko_supervisor_agent_07c76f93",
-  "revision": 12,
+  "revision": 13,
   "schema_version": 1,
   "state": "active",
-  "updated_at": "2026-11-03T02:48:58.127245Z",
-  "updated_by": "operator",
+  "updated_at": "2026-11-20T19:02:01.430520Z",
+  "updated_by": "harness",
   "workspace_id": "ws_testv4_afb811"
 }

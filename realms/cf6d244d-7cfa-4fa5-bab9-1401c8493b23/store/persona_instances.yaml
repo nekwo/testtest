@@ -7,6 +7,14 @@ instances:
     realm_id: cf6d244d-7cfa-4fa5-bab9-1401c8493b23
     spawned_by: operator
     workspace_id: ws_testv4_afb811
+  personainst_dev_agent_68b8bedc:
+    display_name: Launcher Dev Agent 2
+    id: personainst_dev_agent_68b8bedc
+    mode: chat
+    persona_id: dev
+    realm_id: cf6d244d-7cfa-4fa5-bab9-1401c8493b23
+    spawned_by: neko_mission_lead_beta
+    workspace_id: ws_testv4_afb811
   personainst_dev_agent_8b319ebf:
     api_mode: codex_responses
     character_assignment:
@@ -37,6 +45,14 @@ instances:
     provider: openai-codex
     realm_id: cf6d244d-7cfa-4fa5-bab9-1401c8493b23
     spawned_by: operator
+    workspace_id: ws_testv4_afb811
+  personainst_dev_agent_f88f7aff:
+    display_name: Launcher Dev Agent 3
+    id: personainst_dev_agent_f88f7aff
+    mode: chat
+    persona_id: dev
+    realm_id: cf6d244d-7cfa-4fa5-bab9-1401c8493b23
+    spawned_by: neko_mission_lead_beta
     workspace_id: ws_testv4_afb811
   personainst_neko_supervisor_agent_07c76f93:
     api_mode: anthropic_messages

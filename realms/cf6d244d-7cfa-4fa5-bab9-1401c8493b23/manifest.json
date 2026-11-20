@@ -151,9 +151,19 @@
       "path": "store/office/ws_testv4_afb811/actors/personainst_backend_dev_agent_9033415e.json"
     },
     {
+      "destination": "office/ws_testv4_afb811/actors/personainst_dev_agent_68b8bedc.json",
+      "kind": "office_actor",
+      "path": "store/office/ws_testv4_afb811/actors/personainst_dev_agent_68b8bedc.json"
+    },
+    {
       "destination": "office/ws_testv4_afb811/actors/personainst_dev_agent_8b319ebf.json",
       "kind": "office_actor",
       "path": "store/office/ws_testv4_afb811/actors/personainst_dev_agent_8b319ebf.json"
+    },
+    {
+      "destination": "office/ws_testv4_afb811/actors/personainst_dev_agent_f88f7aff.json",
+      "kind": "office_actor",
+      "path": "store/office/ws_testv4_afb811/actors/personainst_dev_agent_f88f7aff.json"
     },
     {
       "destination": "office/ws_testv4_afb811/actors/personainst_neko_supervisor_agent_07c76f93.json",
@@ -186,6 +196,16 @@
       "path": "store/profile_files/gpt-launcher/memories/MEMORY.md"
     },
     {
+      "destination": "SOUL.md",
+      "kind": "soul_overlay",
+      "path": "store/profile_files/neko-mission-lead-beta/SOUL.md"
+    },
+    {
+      "destination": "MEMORY.md",
+      "kind": "profile_memory",
+      "path": "store/profile_files/neko-mission-lead-beta/memories/MEMORY.md"
+    },
+    {
       "destination": "realms/cf6d244d-7cfa-4fa5-bab9-1401c8493b23.json",
       "kind": "realm",
       "path": "store/realms/cf6d244d-7cfa-4fa5-bab9-1401c8493b23.json"
@@ -201,7 +221,7 @@
       "path": "store/workspaces/ws_testv4_afb811.json"
     }
   ],
-  "generated_at": "2026-11-19T23:25:37.096270-05:00",
+  "generated_at": "2026-11-20T17:33:33.226512-05:00",
   "kind": "realm_sync_manifest",
   "realm_id": "cf6d244d-7cfa-4fa5-bab9-1401c8493b23",
   "schema_version": 1,

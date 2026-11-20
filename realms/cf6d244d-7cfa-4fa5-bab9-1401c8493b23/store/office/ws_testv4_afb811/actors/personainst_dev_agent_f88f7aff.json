@@ -1,0 +1,28 @@
+{
+  "actor_key": "personainst_dev_agent_f88f7aff",
+  "backing_profile": "gpt-launcher",
+  "created_at": "2026-11-20T19:27:38.795275Z",
+  "items": [
+    {
+      "display_name": "Launcher Dev Agent 3",
+      "folder": "Agents",
+      "item_id": "personainst_dev_agent_f88f7aff",
+      "kind": "agent",
+      "persona_id": "dev",
+      "pet_slug": null,
+      "position": [
+        0.0,
+        -1.6
+      ],
+      "scale": 1.0
+    }
+  ],
+  "persona_id": "dev",
+  "persona_instance_id": "personainst_dev_agent_f88f7aff",
+  "revision": 1,
+  "schema_version": 1,
+  "state": "active",
+  "updated_at": "2026-11-20T19:27:38.795275Z",
+  "updated_by": "harness",
+  "workspace_id": "ws_testv4_afb811"
+}

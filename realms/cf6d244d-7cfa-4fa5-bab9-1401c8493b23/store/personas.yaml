@@ -63,8 +63,27 @@ personas:
       - systematic-debugging
       - test-driven-development
     system_prompt_path: ''
-  neko_supervisor:
-    origin: eternia
+  neko_mission_lead_beta:
+    api_mode: codex_responses
+    autonomy: propose_only
+    based_on:
+      id: neko_supervisor
+      name: Neko Mission Lead
+    display_name: Neko Mission Lead Beta
+    hermes_profile: neko-mission-lead-beta
+    include_core_context_files: false
+    include_profile_memory: true
+    model: gpt-5.6-luna
+    provider: openai-codex
+    role: alice_supervisor
+    skills:
+      - eternia-backend-tests
+      - eternia-hermes-agent
+      - eternia-launcher-workflow
+      - eternia-writing-plans
+      - harness-runtime-model
+      - staged-deep-audit-delivery
+      - systematic-debugging
+    soul_overlay_path: SOUL.md
+    system_prompt_path: ''
 schema_version: 1
-shipped_agents:
-  neko_supervisor: 42256fd742168c0d
