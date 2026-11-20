@@ -151,11 +151,6 @@
       "path": "store/office/ws_testv4_afb811/actors/personainst_backend_dev_agent_9033415e.json"
     },
     {
-      "destination": "office/ws_testv4_afb811/actors/personainst_base_agent_a24948df.json",
-      "kind": "office_actor",
-      "path": "store/office/ws_testv4_afb811/actors/personainst_base_agent_a24948df.json"
-    },
-    {
       "destination": "office/ws_testv4_afb811/actors/personainst_dev_agent_8b319ebf.json",
       "kind": "office_actor",
       "path": "store/office/ws_testv4_afb811/actors/personainst_dev_agent_8b319ebf.json"
@@ -206,7 +201,7 @@
       "path": "store/workspaces/ws_testv4_afb811.json"
     }
   ],
-  "generated_at": "2026-11-19T21:12:10.009615-05:00",
+  "generated_at": "2026-11-19T23:25:37.096270-05:00",
   "kind": "realm_sync_manifest",
   "realm_id": "cf6d244d-7cfa-4fa5-bab9-1401c8493b23",
   "schema_version": 1,
