@@ -1,6 +1,6 @@
 {
   "actor_key": "personainst_dev_agent_f88f7aff",
-  "backing_profile": "gpt-launcher",
+  "backing_profile": null,
   "created_at": "2026-11-20T19:27:38.795275Z",
   "items": [
     {
@@ -11,18 +11,18 @@
       "persona_id": "dev",
       "pet_slug": null,
       "position": [
-        0.0,
-        -1.6
+        -0.8733124732971191,
+        -7.193159103393555
       ],
       "scale": 1.0
     }
   ],
   "persona_id": "dev",
   "persona_instance_id": "personainst_dev_agent_f88f7aff",
-  "revision": 1,
+  "revision": 7,
   "schema_version": 1,
   "state": "active",
-  "updated_at": "2026-11-20T19:27:38.795275Z",
-  "updated_by": "harness",
+  "updated_at": "2026-11-20T22:34:02.121970Z",
+  "updated_by": "operator",
   "workspace_id": "ws_testv4_afb811"
 }
