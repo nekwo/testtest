@@ -11,18 +11,18 @@
       "persona_id": "neko_mission_lead_beta",
       "pet_slug": null,
       "position": [
-        -1.1289900541305542,
-        2.5678787231445312
+        -1.1289772987365723,
+        2.6243247985839844
       ],
       "scale": 1.0
     }
   ],
   "persona_id": "neko_mission_lead_beta",
   "persona_instance_id": "personainst_neko_supervisor_agent_07c76f93",
-  "revision": 13,
+  "revision": 14,
   "schema_version": 1,
   "state": "active",
-  "updated_at": "2026-11-20T19:02:01.430520Z",
-  "updated_by": "harness",
+  "updated_at": "2026-11-20T22:34:10.305073Z",
+  "updated_by": "operator",
   "workspace_id": "ws_testv4_afb811"
 }
